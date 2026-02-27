@@ -1,0 +1,29 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 48523,
+                "file_path": "results\\TrivialTest01\\Run\\Run-48523.onnx",
+                "reward": 0.9887323943661972,
+                "creation_time": 1772184266.2134955,
+                "auxillary_file_paths": [
+                    "results\\TrivialTest01\\Run\\Run-48523.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 48523,
+            "file_path": "results\\TrivialTest01\\Run.onnx",
+            "reward": 0.9887323943661972,
+            "creation_time": 1772184266.2134955,
+            "auxillary_file_paths": [
+                "results\\TrivialTest01\\Run\\Run-48523.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
