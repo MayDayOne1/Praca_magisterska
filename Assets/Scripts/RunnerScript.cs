@@ -12,7 +12,9 @@ public class RunnerScript : Agent
 
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = new Vector3(1.50999975f, -0.370000124f, -4.10000038f);
+        //transform.localPosition = new Vector3(1.50999975f, -0.370000124f, -4.10000038f);
+        transform.localPosition = new Vector3(Random.Range(-1.52f, 5.16f), 0f, Random.Range(-6.22f, 0.96f));
+        targetTransform.localPosition = new Vector3(Random.Range(-1.52f, 5.16f), 0f, Random.Range(-6.22f, 0.96f));
     }
 
     public override void CollectObservations(VectorSensor sensor)

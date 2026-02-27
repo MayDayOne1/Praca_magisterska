@@ -1,0 +1,65 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 199998,
+                "file_path": "results\\CrudeRandomnessTensorboard\\Run\\Run-199998.onnx",
+                "reward": 1.0,
+                "creation_time": 1772186274.8210258,
+                "auxillary_file_paths": [
+                    "results\\CrudeRandomnessTensorboard\\Run\\Run-199998.pt"
+                ]
+            },
+            {
+                "steps": 249996,
+                "file_path": "results\\CrudeRandomnessTensorboard\\Run\\Run-249996.onnx",
+                "reward": 0.9761904761904762,
+                "creation_time": 1772186342.8298545,
+                "auxillary_file_paths": [
+                    "results\\CrudeRandomnessTensorboard\\Run\\Run-249996.pt"
+                ]
+            },
+            {
+                "steps": 299991,
+                "file_path": "results\\CrudeRandomnessTensorboard\\Run\\Run-299991.onnx",
+                "reward": 1.0,
+                "creation_time": 1772186418.3284173,
+                "auxillary_file_paths": [
+                    "results\\CrudeRandomnessTensorboard\\Run\\Run-299991.pt"
+                ]
+            },
+            {
+                "steps": 349998,
+                "file_path": "results\\CrudeRandomnessTensorboard\\Run\\Run-349998.onnx",
+                "reward": 1.0,
+                "creation_time": 1772186494.8898287,
+                "auxillary_file_paths": [
+                    "results\\CrudeRandomnessTensorboard\\Run\\Run-349998.pt"
+                ]
+            },
+            {
+                "steps": 394049,
+                "file_path": "results\\CrudeRandomnessTensorboard\\Run\\Run-394049.onnx",
+                "reward": null,
+                "creation_time": 1772186622.9444888,
+                "auxillary_file_paths": [
+                    "results\\CrudeRandomnessTensorboard\\Run\\Run-394049.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 394049,
+            "file_path": "results\\CrudeRandomnessTensorboard\\Run.onnx",
+            "reward": null,
+            "creation_time": 1772186622.9444888,
+            "auxillary_file_paths": [
+                "results\\CrudeRandomnessTensorboard\\Run\\Run-394049.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
