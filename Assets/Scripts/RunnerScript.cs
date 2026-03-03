@@ -9,12 +9,50 @@ public class RunnerScript : Agent
     [SerializeField] private Material green;
     [SerializeField] private Material red;
     [SerializeField] private MeshRenderer meshRenderer;
+    
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] private float checkRadius = 0.5f;
+    
+    private float minX = -8f, minZ = -8f;
+    private float maxX = 8f, maxZ = 8f;
+
+    private Vector3 GetValidRandomPosition()
+    {
+        Vector3 safePos = new Vector3(0.23f, 0f, -1.66f);
+        Vector3 randomLocalPos = Vector3.zero;
+        bool isValid = false;
+
+        int maxAttempts = 50;
+        int attempts = 0;
+
+        while (!isValid && attempts < maxAttempts)
+        {
+            randomLocalPos = new Vector3(Random.Range(minX, maxX), 0f, Random.Range(minZ, maxZ));
+
+            Vector3 globalPos = transform.parent != null
+                ? transform.parent.TransformPoint(randomLocalPos)
+                : randomLocalPos;
+
+            if (!Physics.CheckSphere(globalPos, checkRadius, wallLayer))
+            {
+                isValid = true;
+            }
+            attempts++;
+        }
+
+        if (!isValid)
+        {
+            return safePos;
+        }
+
+        return randomLocalPos;
+    }
 
     public override void OnEpisodeBegin()
     {
         //transform.localPosition = new Vector3(1.50999975f, -0.370000124f, -4.10000038f);
-        transform.localPosition = new Vector3(Random.Range(-1.52f, 5.16f), 0f, Random.Range(-6.22f, 0.96f));
-        targetTransform.localPosition = new Vector3(Random.Range(-1.52f, 5.16f), 0f, Random.Range(-6.22f, 0.96f));
+        transform.localPosition = GetValidRandomPosition();
+        targetTransform.localPosition = GetValidRandomPosition();
     }
 
     public override void CollectObservations(VectorSensor sensor)

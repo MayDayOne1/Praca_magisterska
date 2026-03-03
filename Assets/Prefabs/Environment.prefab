@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 236939079239071076}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5099998, y: -0.37000012, z: -4.1000004}
+  m_LocalPosition: {x: 0.23, y: -0.37000012, z: -1.67}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -211,6 +211,10 @@ MonoBehaviour:
   green: {fileID: 2100000, guid: 5458ff56b122c564186bc4a231186805, type: 2}
   red: {fileID: 2100000, guid: efcba68c3bdb8214d84a27ee8fafa12c, type: 2}
   meshRenderer: {fileID: 5028487110453941640}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  checkRadius: 0.5
 --- !u!1 &1297707115021499016
 GameObject:
   m_ObjectHideFlags: 0
