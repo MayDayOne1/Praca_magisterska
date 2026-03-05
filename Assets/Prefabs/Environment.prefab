@@ -208,6 +208,7 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
   targetTransform: {fileID: 8168974160471033296}
+  pursuerTransform: {fileID: 561193811919787118}
   green: {fileID: 2100000, guid: 5458ff56b122c564186bc4a231186805, type: 2}
   red: {fileID: 2100000, guid: efcba68c3bdb8214d84a27ee8fafa12c, type: 2}
   meshRenderer: {fileID: 5028487110453941640}
@@ -1384,7 +1385,7 @@ GameObject:
   - component: {fileID: 1067379036199858235}
   m_Layer: 0
   m_Name: Pursuer
-  m_TagString: Untagged
+  m_TagString: Pursuer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1398,7 +1399,7 @@ Transform:
   m_GameObject: {fileID: 2435347355195731880}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.799999, y: -0.5070002, z: -0.11752993}
+  m_LocalPosition: {x: -8.21, y: -0.5070002, z: 3.14}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:

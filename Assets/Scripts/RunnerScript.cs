@@ -6,6 +6,7 @@ using Unity.MLAgents.Sensors;
 public class RunnerScript : Agent
 {
     [SerializeField] private Transform targetTransform;
+    [SerializeField] private Transform pursuerTransform;
     [SerializeField] private Material green;
     [SerializeField] private Material red;
     [SerializeField] private MeshRenderer meshRenderer;
@@ -53,6 +54,7 @@ public class RunnerScript : Agent
         //transform.localPosition = new Vector3(1.50999975f, -0.370000124f, -4.10000038f);
         transform.localPosition = GetValidRandomPosition();
         targetTransform.localPosition = GetValidRandomPosition();
+        pursuerTransform.localPosition = GetValidRandomPosition();
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -83,7 +85,7 @@ public class RunnerScript : Agent
         if (other.gameObject.CompareTag("Goal"))
         {
             meshRenderer.material = green;
-            SetReward(+1f);
+            SetReward(+10f);
             EndEpisode();
         }
     }
@@ -93,7 +95,13 @@ public class RunnerScript : Agent
         if (collision.gameObject.CompareTag("Wall"))
         {
             meshRenderer.material = red;
-            SetReward(-1f);
+            SetReward(-2f);
+            EndEpisode();
+        }
+        else if(collision.gameObject.CompareTag("Pursuer"))
+        {
+            meshRenderer.material = red;
+            SetReward(-10f);
             EndEpisode();
         }
     }
