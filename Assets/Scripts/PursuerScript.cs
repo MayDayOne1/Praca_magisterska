@@ -1,25 +1,21 @@
-using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using UnityEngine;
 
-public class RunnerScript : Agent
+public class PursuerScript : Agent
 {
     [SerializeField] private EnviroManager enviroManager;
-    [SerializeField] private Transform targetTransform;
-    [SerializeField] private Transform pursuerTransform;
-
+    [SerializeField] private Transform runnerTransform;
     public override void OnEpisodeBegin()
     {
-        //transform.localPosition = new Vector3(1.50999975f, -0.370000124f, -4.10000038f);
         transform.localPosition = enviroManager.GetValidRandomPosition();
-        targetTransform.localPosition = enviroManager.GetValidRandomPosition();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(targetTransform.localPosition);
+        sensor.AddObservation(runnerTransform.localPosition);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -38,16 +34,6 @@ public class RunnerScript : Agent
         continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Goal"))
-        {
-            enviroManager.SetFloorMaterial(enviroManager.green);
-            SetReward(+1f);
-            EndEpisode();
-        }
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))
@@ -56,10 +42,11 @@ public class RunnerScript : Agent
             SetReward(-1f);
             EndEpisode();
         }
-        else if(collision.gameObject.CompareTag("Pursuer"))
+
+        if (collision.gameObject.CompareTag("Runner"))
         {
             enviroManager.SetFloorMaterial(enviroManager.orange);
-            SetReward(-1f);
+            SetReward(1f);
             EndEpisode();
         }
     }

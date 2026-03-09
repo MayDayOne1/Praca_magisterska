@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3579228791346273325}
   m_Layer: 0
   m_Name: Runner
-  m_TagString: Untagged
+  m_TagString: Runner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 922faf46359a16f449bb46b326e6908a, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Run
@@ -207,15 +207,9 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
+  enviroManager: {fileID: 8673463546344969506}
   targetTransform: {fileID: 8168974160471033296}
   pursuerTransform: {fileID: 561193811919787118}
-  green: {fileID: 2100000, guid: 5458ff56b122c564186bc4a231186805, type: 2}
-  red: {fileID: 2100000, guid: efcba68c3bdb8214d84a27ee8fafa12c, type: 2}
-  meshRenderer: {fileID: 5028487110453941640}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  checkRadius: 0.5
 --- !u!1 &1297707115021499016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,6 +1377,10 @@ GameObject:
   - component: {fileID: 3463582477345421804}
   - component: {fileID: 5000848315921119978}
   - component: {fileID: 1067379036199858235}
+  - component: {fileID: 8648686359194931637}
+  - component: {fileID: 8071271612431551102}
+  - component: {fileID: 6384537397086571985}
+  - component: {fileID: 1841487536175437823}
   m_Layer: 0
   m_Name: Pursuer
   m_TagString: Pursuer
@@ -1485,6 +1483,97 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8648686359194931637
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435347355195731880}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8071271612431551102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435347355195731880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.Policies.BehaviorParameters
+  m_BrainParameters:
+    VectorObservationSize: 6
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 2
+      BranchSizes: 
+    VectorActionSize: 02000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: Pursue
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_DeterministicInference: 0
+  m_ObservableAttributeHandling: 0
+--- !u!114 &6384537397086571985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435347355195731880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.ML-Agents::Unity.MLAgents.DecisionRequester
+  DecisionPeriod: 5
+  DecisionStep: 0
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &1841487536175437823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435347355195731880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b30dcec3512384a97bff2584ca749c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PursuerScript
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 1000
+  enviroManager: {fileID: 8673463546344969506}
+  runnerTransform: {fileID: 8462845439153379669}
 --- !u!1 &2495222038866910184
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6934473296959669683}
+  - component: {fileID: 8673463546344969506}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1618,6 +1708,26 @@ Transform:
   - {fileID: 8168974160471033296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8673463546344969506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813537313779620260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089e3d96257dc224bb4254e3653efbc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnviroManager
+  floor: {fileID: 5028487110453941640}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  checkRadius: 0.5
+  green: {fileID: 2100000, guid: 5458ff56b122c564186bc4a231186805, type: 2}
+  orange: {fileID: 2100000, guid: de9d6274894214548b8e5978f3cba5af, type: 2}
+  yellow: {fileID: 2100000, guid: d531401eedcf555448fb6b43ee6a4fe7, type: 2}
 --- !u!1 &4393906081219167493
 GameObject:
   m_ObjectHideFlags: 0
