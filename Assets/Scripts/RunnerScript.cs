@@ -42,7 +42,7 @@ public class RunnerScript : Agent
     {
         if (other.gameObject.CompareTag("Goal"))
         {
-            enviroManager.SetFloorMaterial(enviroManager.green);
+            enviroManager.SetFloorMaterial(enviroManager.runnerWin);
             SetReward(+1f);
             EndEpisode();
         }
@@ -52,13 +52,13 @@ public class RunnerScript : Agent
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            enviroManager.SetFloorMaterial(enviroManager.yellow);
+            enviroManager.SetFloorMaterial(enviroManager.wallHit);
             SetReward(-1f);
             EndEpisode();
         }
         else if(collision.gameObject.CompareTag("Pursuer"))
         {
-            enviroManager.SetFloorMaterial(enviroManager.orange);
+            enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(-1f);
             EndEpisode();
         }

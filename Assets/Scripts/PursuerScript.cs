@@ -38,14 +38,14 @@ public class PursuerScript : Agent
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            enviroManager.SetFloorMaterial(enviroManager.yellow);
+            enviroManager.SetFloorMaterial(enviroManager.wallHit);
             SetReward(-1f);
             EndEpisode();
         }
 
         if (collision.gameObject.CompareTag("Runner"))
         {
-            enviroManager.SetFloorMaterial(enviroManager.orange);
+            enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(1f);
             EndEpisode();
         }

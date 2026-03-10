@@ -1,0 +1,105 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 49984,
+                "file_path": "results\\test-ray\\Run\\Run-49984.onnx",
+                "reward": -0.7727272727272727,
+                "creation_time": 1773135186.9748552,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Run\\Run-49984.pt"
+                ]
+            },
+            {
+                "steps": 99999,
+                "file_path": "results\\test-ray\\Run\\Run-99999.onnx",
+                "reward": -0.9473684210526315,
+                "creation_time": 1773135269.9101284,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Run\\Run-99999.pt"
+                ]
+            },
+            {
+                "steps": 149970,
+                "file_path": "results\\test-ray\\Run\\Run-149970.onnx",
+                "reward": -0.9523809523809523,
+                "creation_time": 1773135352.0705104,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Run\\Run-149970.pt"
+                ]
+            },
+            {
+                "steps": 175022,
+                "file_path": "results\\test-ray\\Run\\Run-175022.onnx",
+                "reward": -0.8313253012048193,
+                "creation_time": 1773135455.2573557,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Run\\Run-175022.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 175022,
+            "file_path": "results\\test-ray\\Run.onnx",
+            "reward": -0.8313253012048193,
+            "creation_time": 1773135455.2573557,
+            "auxillary_file_paths": [
+                "results\\test-ray\\Run\\Run-175022.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 49947,
+                "file_path": "results\\test-ray\\Pursue\\Pursue-49947.onnx",
+                "reward": -0.4838709677419355,
+                "creation_time": 1773135187.1558723,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Pursue\\Pursue-49947.pt"
+                ]
+            },
+            {
+                "steps": 99953,
+                "file_path": "results\\test-ray\\Pursue\\Pursue-99953.onnx",
+                "reward": -0.2716049382716049,
+                "creation_time": 1773135269.492213,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Pursue\\Pursue-99953.pt"
+                ]
+            },
+            {
+                "steps": 149942,
+                "file_path": "results\\test-ray\\Pursue\\Pursue-149942.onnx",
+                "reward": -0.047619047619047616,
+                "creation_time": 1773135351.8626158,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Pursue\\Pursue-149942.pt"
+                ]
+            },
+            {
+                "steps": 175026,
+                "file_path": "results\\test-ray\\Pursue\\Pursue-175026.onnx",
+                "reward": -0.22857142857142856,
+                "creation_time": 1773135455.3756824,
+                "auxillary_file_paths": [
+                    "results\\test-ray\\Pursue\\Pursue-175026.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 175026,
+            "file_path": "results\\test-ray\\Pursue.onnx",
+            "reward": -0.22857142857142856,
+            "creation_time": 1773135455.3756824,
+            "auxillary_file_paths": [
+                "results\\test-ray\\Pursue\\Pursue-175026.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}

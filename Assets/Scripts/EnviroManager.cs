@@ -10,9 +10,9 @@ public class EnviroManager : MonoBehaviour
     private float minX = -8f, minZ = -8f;
     private float maxX = 8f, maxZ = 8f;
 
-    public Material green;
-    public Material orange;
-    public Material yellow;
+    public Material runnerWin;
+    public Material pursuerWin;
+    public Material wallHit;
 
     public Vector3 GetValidRandomPosition()
     {
