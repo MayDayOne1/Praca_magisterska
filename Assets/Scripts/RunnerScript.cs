@@ -2,18 +2,36 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using System.ComponentModel;
+using UnityEngine.Rendering;
 
 public class RunnerScript : Agent
 {
+    [SerializeField] private bool denseRewards = true;
     [SerializeField] private EnviroManager enviroManager;
     [SerializeField] private Transform targetTransform;
     [SerializeField] private Transform pursuerTransform;
+
+    private float previousDistanceToGoal;
+
+    private void AddDenseReward()
+    {
+        if (denseRewards)
+        {
+            float currentDistanceToGoal = Vector3.Distance(transform.position, targetTransform.position);
+            float distanceDifference = previousDistanceToGoal - currentDistanceToGoal;
+            AddReward(distanceDifference * 0.1f);
+            previousDistanceToGoal = currentDistanceToGoal;
+        }
+    }
 
     public override void OnEpisodeBegin()
     {
         //transform.localPosition = new Vector3(1.50999975f, -0.370000124f, -4.10000038f);
         transform.localPosition = enviroManager.GetValidRandomPosition();
         targetTransform.localPosition = enviroManager.GetValidRandomPosition();
+
+        previousDistanceToGoal = Vector3.Distance(transform.position, targetTransform.position);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -29,6 +47,8 @@ public class RunnerScript : Agent
 
         float moveSpeed = 3f;
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
+
+        AddDenseReward();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

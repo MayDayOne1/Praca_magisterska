@@ -2,22 +2,44 @@
     "Run": {
         "checkpoints": [
             {
-                "steps": 46359,
-                "file_path": "results\\ppo\\Run\\Run-46359.onnx",
-                "reward": 1.0,
-                "creation_time": 1772183850.7016122,
+                "steps": 26138,
+                "file_path": "results\\ppo\\Run\\Run-26138.onnx",
+                "reward": -0.7620332966869076,
+                "creation_time": 1773318029.1929219,
                 "auxillary_file_paths": [
-                    "results\\ppo\\Run\\Run-46359.pt"
+                    "results\\ppo\\Run\\Run-26138.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 46359,
+            "steps": 26138,
             "file_path": "results\\ppo\\Run.onnx",
-            "reward": 1.0,
-            "creation_time": 1772183850.7016122,
+            "reward": -0.7620332966869076,
+            "creation_time": 1773318029.1929219,
             "auxillary_file_paths": [
-                "results\\ppo\\Run\\Run-46359.pt"
+                "results\\ppo\\Run\\Run-26138.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 26107,
+                "file_path": "results\\ppo\\Pursue\\Pursue-26107.onnx",
+                "reward": -0.3551532620830195,
+                "creation_time": 1773318029.3041205,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Pursue\\Pursue-26107.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 26107,
+            "file_path": "results\\ppo\\Pursue.onnx",
+            "reward": -0.3551532620830195,
+            "creation_time": 1773318029.3041205,
+            "auxillary_file_paths": [
+                "results\\ppo\\Pursue\\Pursue-26107.pt"
             ]
         }
     },

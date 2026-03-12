@@ -5,8 +5,23 @@ using UnityEngine;
 
 public class PursuerScript : Agent
 {
+    [SerializeField] private bool denseRewards = true;
     [SerializeField] private EnviroManager enviroManager;
     [SerializeField] private Transform runnerTransform;
+
+    private float previousDistanceToGoal;
+
+    private void AddDenseReward()
+    {
+        if (denseRewards)
+        {
+            float currentDistanceToRunner = Vector3.Distance(transform.position, runnerTransform.position);
+            float distanceDifference = previousDistanceToGoal - currentDistanceToRunner;
+            AddReward(distanceDifference * 0.1f);
+            previousDistanceToGoal = currentDistanceToRunner;
+        }
+    }
+
     public override void OnEpisodeBegin()
     {
         transform.localPosition = enviroManager.GetValidRandomPosition();
@@ -25,6 +40,7 @@ public class PursuerScript : Agent
 
         float moveSpeed = 3f;
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
+        AddDenseReward();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
