@@ -6,6 +6,7 @@ using UnityEngine;
 public class PursuerScript : Agent
 {
     [SerializeField] private bool denseRewards = true;
+    [SerializeField] private bool wallHitEndsEpisode = false;
     [SerializeField] private EnviroManager enviroManager;
     [SerializeField] private Transform runnerTransform;
 
@@ -52,9 +53,10 @@ public class PursuerScript : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
+            Debug.Log("ok");
             SetReward(-1f);
             EndEpisode();
         }

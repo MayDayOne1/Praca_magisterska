@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 public class RunnerScript : Agent
 {
     [SerializeField] private bool denseRewards = true;
+    [SerializeField] private bool wallHitEndsEpisode = false;
     [SerializeField] private EnviroManager enviroManager;
     [SerializeField] private Transform targetTransform;
     [SerializeField] private Transform pursuerTransform;
@@ -70,13 +71,15 @@ public class RunnerScript : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
+            Debug.Log("ok");
             SetReward(-1f);
             EndEpisode();
         }
-        else if(collision.gameObject.CompareTag("Pursuer"))
+        
+        if(collision.gameObject.CompareTag("Pursuer"))
         {
             enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(-1f);

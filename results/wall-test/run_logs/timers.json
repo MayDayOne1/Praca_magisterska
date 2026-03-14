@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1773391207",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\GitProjects\\Praca_magisterska\\venv\\Scripts\\mlagents-learn Assets\\Config\\Run.yaml --run-id=wall-test --force",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.5.1+cu121",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1773391210"
+    },
+    "total": 2.5734229999943636,
+    "count": 1,
+    "self": 0.008788599996478297,
+    "children": {
+        "run_training.setup": {
+            "total": 0.09667060000356287,
+            "count": 1,
+            "self": 0.09667060000356287
+        },
+        "TrainerController.start_learning": {
+            "total": 2.4679637999943225,
+            "count": 1,
+            "self": 0.00010279998241458088,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 2.4678406000020914,
+                    "count": 1,
+                    "self": 2.4678406000020914
+                },
+                "TrainerController._save_models": {
+                    "total": 2.0400009816512465e-05,
+                    "count": 1,
+                    "self": 2.0400009816512465e-05
+                }
+            }
+        }
+    }
+}
