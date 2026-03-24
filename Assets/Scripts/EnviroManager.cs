@@ -7,8 +7,8 @@ public class EnviroManager : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float checkRadius = 0.5f;
 
-    private float minX = -8f, minZ = -8f;
-    private float maxX = 8f, maxZ = 8f;
+    [SerializeField] private float minX = -8f, minZ = -8f;
+    [SerializeField] private float maxX = 8f, maxZ = 8f;
 
     public Material runnerWin;
     public Material pursuerWin;

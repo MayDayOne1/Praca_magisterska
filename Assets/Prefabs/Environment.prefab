@@ -1792,6 +1792,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   checkRadius: 0.5
+  minX: -8
+  minZ: -8
+  maxX: 8
+  maxZ: 8
   runnerWin: {fileID: 2100000, guid: 7188d04350a44204b86ea5b1ead3df90, type: 2}
   pursuerWin: {fileID: 2100000, guid: 6bea4e99df485354687004620cb8f876, type: 2}
   wallHit: {fileID: 2100000, guid: d531401eedcf555448fb6b43ee6a4fe7, type: 2}
