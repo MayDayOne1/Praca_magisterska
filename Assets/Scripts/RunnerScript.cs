@@ -12,8 +12,20 @@ public class RunnerScript : Agent
     [SerializeField] private EnviroManager enviroManager;
     [SerializeField] private Transform targetTransform;
     [SerializeField] private Transform pursuerTransform;
+    [SerializeField] private float speed = 70f;
 
     private float previousDistanceToGoal;
+
+    private void Rotate(float moveX, float moveZ)
+    {
+        Vector3 moveDirection = new Vector3(moveX, 0f, moveZ);
+
+        if (moveDirection.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(-moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+        }
+    }
 
     private void AddDenseReward()
     {
@@ -49,14 +61,15 @@ public class RunnerScript : Agent
         float moveSpeed = 3f;
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
 
+        Rotate(moveX, moveZ);
         AddDenseReward();
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxisRaw("Horizontal") * Time.deltaTime;
-        continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime;
+        continuousActions[0] = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
+        continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
     }
 
     private void OnTriggerEnter(Collider other)
