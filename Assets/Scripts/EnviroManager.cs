@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnviroManager : MonoBehaviour
 {
+    [SerializeField] private bool changeFloorMaterial = true;
     [SerializeField] private MeshRenderer floor;
 
     [SerializeField] private LayerMask wallLayer;
@@ -47,6 +48,6 @@ public class EnviroManager : MonoBehaviour
     }
     public void SetFloorMaterial(Material m)
     {
-        floor.material = m;
+        if(changeFloorMaterial) floor.material = m;
     }
 }
