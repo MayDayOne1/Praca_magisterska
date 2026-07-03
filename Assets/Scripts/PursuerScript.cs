@@ -69,7 +69,6 @@ public class PursuerScript : Agent
         if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
-            Debug.Log("ok");
             SetReward(-1f);
             EndEpisode();
         }

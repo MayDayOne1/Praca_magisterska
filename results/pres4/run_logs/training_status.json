@@ -1,0 +1,123 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 199977,
+                "file_path": "results\\pres4\\Run\\Run-199977.onnx",
+                "reward": -0.34432657063007355,
+                "creation_time": 1775889950.8334925,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Run\\Run-199977.pt"
+                ]
+            },
+            {
+                "steps": 249953,
+                "file_path": "results\\pres4\\Run\\Run-249953.onnx",
+                "reward": 0.002156966704536568,
+                "creation_time": 1775890040.007689,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Run\\Run-249953.pt"
+                ]
+            },
+            {
+                "steps": 299994,
+                "file_path": "results\\pres4\\Run\\Run-299994.onnx",
+                "reward": 0.32878601210328134,
+                "creation_time": 1775890128.054529,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Run\\Run-299994.pt"
+                ]
+            },
+            {
+                "steps": 349947,
+                "file_path": "results\\pres4\\Run\\Run-349947.onnx",
+                "reward": 0.6216256109066307,
+                "creation_time": 1775890215.5767474,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Run\\Run-349947.pt"
+                ]
+            },
+            {
+                "steps": 351109,
+                "file_path": "results\\pres4\\Run\\Run-351109.onnx",
+                "reward": 0.6080395326165384,
+                "creation_time": 1775890280.517487,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Run\\Run-351109.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 351109,
+            "file_path": "results\\pres4\\Run.onnx",
+            "reward": 0.6080395326165384,
+            "creation_time": 1775890280.517487,
+            "auxillary_file_paths": [
+                "results\\pres4\\Run\\Run-351109.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 199954,
+                "file_path": "results\\pres4\\Pursue\\Pursue-199954.onnx",
+                "reward": 1.2046783416660438,
+                "creation_time": 1775889950.9300182,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Pursue\\Pursue-199954.pt"
+                ]
+            },
+            {
+                "steps": 249952,
+                "file_path": "results\\pres4\\Pursue\\Pursue-249952.onnx",
+                "reward": 1.4283964395123934,
+                "creation_time": 1775890040.125818,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Pursue\\Pursue-249952.pt"
+                ]
+            },
+            {
+                "steps": 299980,
+                "file_path": "results\\pres4\\Pursue\\Pursue-299980.onnx",
+                "reward": -92.78420366177129,
+                "creation_time": 1775890128.1632538,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Pursue\\Pursue-299980.pt"
+                ]
+            },
+            {
+                "steps": 349993,
+                "file_path": "results\\pres4\\Pursue\\Pursue-349993.onnx",
+                "reward": -463.2363500789027,
+                "creation_time": 1775890215.724975,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Pursue\\Pursue-349993.pt"
+                ]
+            },
+            {
+                "steps": 351152,
+                "file_path": "results\\pres4\\Pursue\\Pursue-351152.onnx",
+                "reward": -366.0241051172881,
+                "creation_time": 1775890280.6382945,
+                "auxillary_file_paths": [
+                    "results\\pres4\\Pursue\\Pursue-351152.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 351152,
+            "file_path": "results\\pres4\\Pursue.onnx",
+            "reward": -366.0241051172881,
+            "creation_time": 1775890280.6382945,
+            "auxillary_file_paths": [
+                "results\\pres4\\Pursue\\Pursue-351152.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
