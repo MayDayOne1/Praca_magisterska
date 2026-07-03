@@ -1,45 +1,45 @@
 {
-    "Pursue": {
-        "checkpoints": [
-            {
-                "steps": 8453,
-                "file_path": "results\\my-test\\Pursue\\Pursue-8453.onnx",
-                "reward": null,
-                "creation_time": 1783064654.9052377,
-                "auxillary_file_paths": [
-                    "results\\my-test\\Pursue\\Pursue-8453.pt"
-                ]
-            }
-        ],
-        "final_checkpoint": {
-            "steps": 8453,
-            "file_path": "results\\my-test\\Pursue.onnx",
-            "reward": null,
-            "creation_time": 1783064654.9052377,
-            "auxillary_file_paths": [
-                "results\\my-test\\Pursue\\Pursue-8453.pt"
-            ]
-        }
-    },
     "Run": {
         "checkpoints": [
             {
-                "steps": 8346,
-                "file_path": "results\\my-test\\Run\\Run-8346.onnx",
-                "reward": null,
-                "creation_time": 1783064655.0382574,
+                "steps": 44475,
+                "file_path": "results\\my-test\\Run\\Run-44475.onnx",
+                "reward": 0.20462841497590908,
+                "creation_time": 1783072881.9338217,
                 "auxillary_file_paths": [
-                    "results\\my-test\\Run\\Run-8346.pt"
+                    "results\\my-test\\Run\\Run-44475.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 8346,
+            "steps": 44475,
             "file_path": "results\\my-test\\Run.onnx",
-            "reward": null,
-            "creation_time": 1783064655.0382574,
+            "reward": 0.20462841497590908,
+            "creation_time": 1783072881.9338217,
             "auxillary_file_paths": [
-                "results\\my-test\\Run\\Run-8346.pt"
+                "results\\my-test\\Run\\Run-44475.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 44475,
+                "file_path": "results\\my-test\\Pursue\\Pursue-44475.onnx",
+                "reward": 0.2570352039228265,
+                "creation_time": 1783072882.0448065,
+                "auxillary_file_paths": [
+                    "results\\my-test\\Pursue\\Pursue-44475.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 44475,
+            "file_path": "results\\my-test\\Pursue.onnx",
+            "reward": 0.2570352039228265,
+            "creation_time": 1783072882.0448065,
+            "auxillary_file_paths": [
+                "results\\my-test\\Pursue\\Pursue-44475.pt"
             ]
         }
     },

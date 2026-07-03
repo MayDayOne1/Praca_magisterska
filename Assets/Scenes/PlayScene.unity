@@ -1758,6 +1758,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1446224704}
+  - {fileID: 2039987356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4893,6 +4894,88 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1001 &2039987355
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 807106541}
+    m_Modifications:
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343382626345644091, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: m_Name
+      value: AccText
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+--- !u!224 &2039987356 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+  m_PrefabInstance: {fileID: 2039987355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2064343879
 Mesh:
   m_ObjectHideFlags: 0
@@ -6881,6 +6964,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
+  pursuer: {fileID: 1841487535987950385}
   denseRewards: 1
   wallHitEndsEpisode: 0
   enviroManager: {fileID: 8673463546155483628}

@@ -208,11 +208,13 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
+  pursuer: {fileID: 1841487536175437823}
   denseRewards: 1
   wallHitEndsEpisode: 0
   enviroManager: {fileID: 8673463546344969506}
   targetTransform: {fileID: 8168974160471033296}
   pursuerTransform: {fileID: 561193811919787118}
+  speed: 70
 --- !u!114 &2998730070509555056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1611,6 +1613,7 @@ MonoBehaviour:
   wallHitEndsEpisode: 0
   enviroManager: {fileID: 8673463546344969506}
   runnerTransform: {fileID: 8462845439153379669}
+  speed: 70
 --- !u!114 &1611344755313616553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1787,6 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089e3d96257dc224bb4254e3653efbc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnviroManager
+  changeFloorMaterial: 1
   floor: {fileID: 5028487110453941640}
   wallLayer:
     serializedVersion: 2

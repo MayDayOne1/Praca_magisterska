@@ -55,6 +55,11 @@ public class PursuerScript : Agent
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
         Rotate(moveX, moveZ);
         AddDenseReward();
+
+        if (MaxStep > 0 && StepCount >= MaxStep - 1)
+        {
+            AccuracyManager.Instance.RegisterPursuerAttempt(false);
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -62,6 +67,13 @@ public class PursuerScript : Agent
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
         continuousActions[0] = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
         continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
+    }
+
+    public void RunnerEscaped()
+    {
+        AddReward(-1.0f);
+        AccuracyManager.Instance.RegisterPursuerAttempt(false);
+        EndEpisode();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -77,6 +89,7 @@ public class PursuerScript : Agent
         {
             enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(1f);
+            AccuracyManager.Instance.RegisterPursuerAttempt(true);
             EndEpisode();
         }
     }

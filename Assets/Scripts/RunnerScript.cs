@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 
 public class RunnerScript : Agent
 {
+    [SerializeField] private PursuerScript pursuer;
     [SerializeField] private bool denseRewards = true;
     [SerializeField] private bool wallHitEndsEpisode = false;
     [SerializeField] private EnviroManager enviroManager;
@@ -63,6 +64,11 @@ public class RunnerScript : Agent
 
         Rotate(moveX, moveZ);
         AddDenseReward();
+
+        if (MaxStep > 0 && StepCount >= MaxStep - 1)
+        {
+            AccuracyManager.Instance.RegisterRunnerAttempt(false);
+        }
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -78,6 +84,13 @@ public class RunnerScript : Agent
         {
             enviroManager.SetFloorMaterial(enviroManager.runnerWin);
             SetReward(+1f);
+            AccuracyManager.Instance.RegisterRunnerAttempt(true);
+
+            if (pursuer != null)
+            {
+                pursuer.RunnerEscaped();
+            }
+
             EndEpisode();
         }
     }
@@ -87,7 +100,6 @@ public class RunnerScript : Agent
         if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
-            Debug.Log("ok");
             SetReward(-1f);
             EndEpisode();
         }
@@ -96,6 +108,7 @@ public class RunnerScript : Agent
         {
             enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(-1f);
+            AccuracyManager.Instance.RegisterRunnerAttempt(false);
             EndEpisode();
         }
     }
