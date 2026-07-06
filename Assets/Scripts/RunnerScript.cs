@@ -68,6 +68,7 @@ public class RunnerScript : Agent
         if (MaxStep > 0 && StepCount >= MaxStep - 1)
         {
             AccuracyManager.Instance.RegisterRunnerAttempt(false);
+            EndEpisode();
         }
     }
 

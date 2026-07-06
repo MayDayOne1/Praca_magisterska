@@ -59,7 +59,10 @@ public class PursuerScript : Agent
         if (MaxStep > 0 && StepCount >= MaxStep - 1)
         {
             AccuracyManager.Instance.RegisterPursuerAttempt(false);
+            EndEpisode();
         }
+
+        
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
