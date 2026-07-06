@@ -17,6 +17,22 @@ public class RunnerScript : Agent
 
     private float previousDistanceToGoal;
 
+    public float dangerZoneRadius = 5f;
+    private float _nearMissTime = 0f;
+    private float _prevMoveX = 0f;
+    private float _prevMoveZ = 0f;
+    private float _totalJitter = 0f;
+
+    public float GetAverageJitter()
+    {
+        return StepCount > 0 ? _totalJitter / StepCount : 0f;
+    }
+
+    public float GetNearMissTime()
+    {
+        return _nearMissTime;
+    }
+
     private void Rotate(float moveX, float moveZ)
     {
         Vector3 moveDirection = new Vector3(moveX, 0f, moveZ);
@@ -46,6 +62,11 @@ public class RunnerScript : Agent
         targetTransform.localPosition = enviroManager.GetValidRandomPosition();
 
         previousDistanceToGoal = Vector3.Distance(transform.position, targetTransform.position);
+
+        _nearMissTime = 0f;
+        _prevMoveX = 0f;
+        _prevMoveZ = 0f;
+        _totalJitter = 0f;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -59,15 +80,31 @@ public class RunnerScript : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
+        float deltaX = Mathf.Abs(moveX - _prevMoveX);
+        float deltaZ = Mathf.Abs(moveZ - _prevMoveZ);
+        _totalJitter += (deltaX + deltaZ);
+
+        _prevMoveX = moveX;
+        _prevMoveZ = moveZ;
+
         float moveSpeed = 3f;
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
-
         Rotate(moveX, moveZ);
         AddDenseReward();
 
+        // Jeœli min¹³ czas (Runner wygrywa)
         if (MaxStep > 0 && StepCount >= MaxStep - 1)
         {
-            AccuracyManager.Instance.RegisterRunnerAttempt(false);
+            float myJitter = GetAverageJitter();
+            float pursuerJitter = pursuer != null ? pursuer.GetAverageJitter() : 0f;
+
+            StatsManager.Instance.SaveEpisodeStats("Draw", myJitter, pursuerJitter, _nearMissTime);
+
+            if (pursuer != null)
+            {
+                pursuer.RunnerEscaped();
+            }
+            enviroManager.SetFloorMaterial(enviroManager.wallHit);
             EndEpisode();
         }
     }
@@ -79,21 +116,43 @@ public class RunnerScript : Agent
         continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
     }
 
+    private void FixedUpdate()
+    {
+        // Calculate time spent close to the pursuer
+        if (pursuer != null)
+        {
+            float distance = Vector3.Distance(transform.position, pursuer.transform.position);
+            if (distance <= dangerZoneRadius)
+            {
+                _nearMissTime += Time.fixedDeltaTime;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Goal"))
         {
-            enviroManager.SetFloorMaterial(enviroManager.runnerWin);
-            SetReward(+1f);
-            AccuracyManager.Instance.RegisterRunnerAttempt(true);
+            AddReward(1.0f);
+
+            float myJitter = GetAverageJitter();
+            float pursuerJitter = pursuer != null ? pursuer.GetAverageJitter() : 0f;
+
+            StatsManager.Instance.SaveEpisodeStats("Runner", myJitter, pursuerJitter, _nearMissTime);
 
             if (pursuer != null)
             {
                 pursuer.RunnerEscaped();
             }
 
+            enviroManager.SetFloorMaterial(enviroManager.runnerWin);
             EndEpisode();
         }
+    }
+    public void GotCaught()
+    {
+        AddReward(-1.0f);
+        EndEpisode(); // Nie wysy³amy statystyk, zrobi³ to ju¿ Pursuer!
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -102,14 +161,6 @@ public class RunnerScript : Agent
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
             SetReward(-1f);
-            EndEpisode();
-        }
-        
-        if(collision.gameObject.CompareTag("Pursuer"))
-        {
-            enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
-            SetReward(-1f);
-            AccuracyManager.Instance.RegisterRunnerAttempt(false);
             EndEpisode();
         }
     }

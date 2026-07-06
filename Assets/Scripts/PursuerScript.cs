@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PursuerScript : Agent
 {
+    [SerializeField] private RunnerScript runner;
     [SerializeField] private bool denseRewards = true;
     [SerializeField] private bool wallHitEndsEpisode = false;
     [SerializeField] private EnviroManager enviroManager;
@@ -12,6 +13,15 @@ public class PursuerScript : Agent
     [SerializeField] private float speed = 70f;
 
     private float previousDistanceToGoal;
+
+    private float _prevMoveX = 0f;
+    private float _prevMoveZ = 0f;
+    private float _totalJitter = 0f;
+
+    public float GetAverageJitter()
+    {
+        return StepCount > 0 ? _totalJitter / StepCount : 0f;
+    }
 
     private void Rotate(float moveX, float moveZ)
     {
@@ -38,6 +48,10 @@ public class PursuerScript : Agent
     public override void OnEpisodeBegin()
     {
         transform.localPosition = enviroManager.GetValidRandomPosition();
+
+        _prevMoveX = 0f;
+        _prevMoveZ = 0f;
+        _totalJitter = 0f;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -51,18 +65,17 @@ public class PursuerScript : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
+        float deltaX = Mathf.Abs(moveX - _prevMoveX);
+        float deltaZ = Mathf.Abs(moveZ - _prevMoveZ);
+        _totalJitter += (deltaX + deltaZ);
+
+        _prevMoveX = moveX;
+        _prevMoveZ = moveZ;
+
         float moveSpeed = 3f;
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
         Rotate(moveX, moveZ);
         AddDenseReward();
-
-        if (MaxStep > 0 && StepCount >= MaxStep - 1)
-        {
-            AccuracyManager.Instance.RegisterPursuerAttempt(false);
-            EndEpisode();
-        }
-
-        
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -75,7 +88,6 @@ public class PursuerScript : Agent
     public void RunnerEscaped()
     {
         AddReward(-1.0f);
-        AccuracyManager.Instance.RegisterPursuerAttempt(false);
         EndEpisode();
     }
 
@@ -92,7 +104,11 @@ public class PursuerScript : Agent
         {
             enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(1f);
-            AccuracyManager.Instance.RegisterPursuerAttempt(true);
+
+            float myJitter = GetAverageJitter();
+            float runnerJitter = runner != null ? runner.GetAverageJitter() : 0f;
+
+            StatsManager.Instance.SaveEpisodeStats("Pursuer", runnerJitter, myJitter, 0f);
             EndEpisode();
         }
     }

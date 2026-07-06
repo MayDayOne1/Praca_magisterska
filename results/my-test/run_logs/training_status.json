@@ -2,44 +2,44 @@
     "Run": {
         "checkpoints": [
             {
-                "steps": 44475,
-                "file_path": "results\\my-test\\Run\\Run-44475.onnx",
-                "reward": 0.20462841497590908,
-                "creation_time": 1783072881.9338217,
+                "steps": 31661,
+                "file_path": "results\\my-test\\Run\\Run-31661.onnx",
+                "reward": null,
+                "creation_time": 1783336641.5051966,
                 "auxillary_file_paths": [
-                    "results\\my-test\\Run\\Run-44475.pt"
+                    "results\\my-test\\Run\\Run-31661.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 44475,
+            "steps": 31661,
             "file_path": "results\\my-test\\Run.onnx",
-            "reward": 0.20462841497590908,
-            "creation_time": 1783072881.9338217,
+            "reward": null,
+            "creation_time": 1783336641.5051966,
             "auxillary_file_paths": [
-                "results\\my-test\\Run\\Run-44475.pt"
+                "results\\my-test\\Run\\Run-31661.pt"
             ]
         }
     },
     "Pursue": {
         "checkpoints": [
             {
-                "steps": 44475,
-                "file_path": "results\\my-test\\Pursue\\Pursue-44475.onnx",
-                "reward": 0.2570352039228265,
-                "creation_time": 1783072882.0448065,
+                "steps": 31661,
+                "file_path": "results\\my-test\\Pursue\\Pursue-31661.onnx",
+                "reward": null,
+                "creation_time": 1783336641.6571898,
                 "auxillary_file_paths": [
-                    "results\\my-test\\Pursue\\Pursue-44475.pt"
+                    "results\\my-test\\Pursue\\Pursue-31661.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 44475,
+            "steps": 31661,
             "file_path": "results\\my-test\\Pursue.onnx",
-            "reward": 0.2570352039228265,
-            "creation_time": 1783072882.0448065,
+            "reward": null,
+            "creation_time": 1783336641.6571898,
             "auxillary_file_paths": [
-                "results\\my-test\\Pursue\\Pursue-44475.pt"
+                "results\\my-test\\Pursue\\Pursue-31661.pt"
             ]
         }
     },

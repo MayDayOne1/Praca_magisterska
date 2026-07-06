@@ -1,0 +1,51 @@
+{
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 37341,
+                "file_path": "results\\full_results_v2\\Pursue\\Pursue-37341.onnx",
+                "reward": -0.401626302559367,
+                "creation_time": 1783340920.0655506,
+                "auxillary_file_paths": [
+                    "results\\full_results_v2\\Pursue\\Pursue-37341.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 37341,
+            "file_path": "results\\full_results_v2\\Pursue.onnx",
+            "reward": -0.401626302559367,
+            "creation_time": 1783340920.0655506,
+            "auxillary_file_paths": [
+                "results\\full_results_v2\\Pursue\\Pursue-37341.pt"
+            ]
+        }
+    },
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 37341,
+                "file_path": "results\\full_results_v2\\Run\\Run-37341.onnx",
+                "reward": 0.5762247713372255,
+                "creation_time": 1783340920.1997776,
+                "auxillary_file_paths": [
+                    "results\\full_results_v2\\Run\\Run-37341.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 37341,
+            "file_path": "results\\full_results_v2\\Run.onnx",
+            "reward": 0.5762247713372255,
+            "creation_time": 1783340920.1997776,
+            "auxillary_file_paths": [
+                "results\\full_results_v2\\Run\\Run-37341.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}

@@ -152,3 +152,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891c1488e43aaec41a158108da4c67ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AccuracyManager
+  statsText: {fileID: 4492603015372680431}
+  csvFileName: results.csv
