@@ -1,22 +1,28 @@
-using UnityEngine;
-using TMPro;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using TMPro;
 using Unity.MLAgents;
+using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance { get; private set; }
 
-    [Header("UI References")]
     public TextMeshProUGUI statsText;
 
-    [Header("Export Settings")]
     public string csvFileName = "results.csv";
     private string _csvFilePath;
+
+    public int lastEpisodesCount = 100;
+    private string _summaryFilePath;
 
     private int _totalEpisodes = 0;
     private int _runnerWins = 0;
     private int _pursuerWins = 0;
+
+    private Queue<bool> _runnerWinHistory = new Queue<bool>();
+    private Queue<bool> _pursuerWinHistory = new Queue<bool>();
 
 
     private void Awake()
@@ -36,6 +42,7 @@ public class StatsManager : MonoBehaviour
             string fileNameWithoutExt = Path.GetFileNameWithoutExtension(csvFileName);
             string finalFileName = $"{fileNameWithoutExt}_{timestamp}.csv";
 
+            _summaryFilePath = Path.Combine(directoryPath, $"Summary_{fileNameWithoutExt}_{timestamp}.txt");
             _csvFilePath = Path.Combine(directoryPath, finalFileName);
 
             // Zapisujemy nag³ówki - zgodnie z proœb¹, BEZ kolumn Accuracy
@@ -52,13 +59,26 @@ public class StatsManager : MonoBehaviour
     {
         _totalEpisodes++;
 
-        if (winner.Contains("Runner"))
+        bool runnerWon = (winner == "Runner");
+        bool pursuerWon = (winner == "Pursuer");
+
+        if (runnerWon) _runnerWins++;
+        if (pursuerWon) _pursuerWins++;
+
+        // --- Logika Kolejki (Historia ostatnich epok) ---
+
+        // Zapisujemy wynik uciekiniera i usuwamy najstarszy, jeœli przekroczyliœmy limit
+        _runnerWinHistory.Enqueue(runnerWon);
+        if (_runnerWinHistory.Count > lastEpisodesCount)
         {
-            _runnerWins++;
+            _runnerWinHistory.Dequeue();
         }
-        else if (winner.Contains("Pursuer"))
+
+        // To samo dla ³owcy
+        _pursuerWinHistory.Enqueue(pursuerWon);
+        if (_pursuerWinHistory.Count > lastEpisodesCount)
         {
-            _pursuerWins++;
+            _pursuerWinHistory.Dequeue();
         }
 
         // 1. EXPORT TO TENSORBOARD (U¿ywamy argumentów z metody, a nie zmiennych klasy!)
@@ -95,5 +115,26 @@ public class StatsManager : MonoBehaviour
                          $"Pursuer Acc: {pursuerAcc:F1}% ({ _pursuerWins}/{ _totalEpisodes})";
 
 
+    }
+
+    private void OnApplicationQuit()
+    {
+        // Sprawdzamy, czy w ogóle rozegrano jak¹kolwiek epokê
+        if (_totalEpisodes > 0)
+        {
+            // Liczymy œredni¹ tylko z zawartoœci kolejki (np. ze 100 ostatnich rund)
+            float runnerAvg = _runnerWinHistory.Count > 0 ? (float)_runnerWinHistory.Count(w => w) / _runnerWinHistory.Count * 100f : 0f;
+            float pursuerAvg = _pursuerWinHistory.Count > 0 ? (float)_pursuerWinHistory.Count(w => w) / _pursuerWinHistory.Count * 100f : 0f;
+
+            string summary = $"--- FINAL SUMMARY ---\n" +
+                             $"Total Episodes Played: {_totalEpisodes}\n" +
+                             $"Overall Runner Wins: {_runnerWins}\n" +
+                             $"Overall Pursuer Wins: {_pursuerWins}\n\n" +
+                             $"--- RECENT PERFORMANCE (Last {lastEpisodesCount} episodes) ---\n" +
+                             $"Runner Recent Accuracy: {runnerAvg:F2}%\n" +
+                             $"Pursuer Recent Accuracy: {pursuerAvg:F2}%\n";
+
+            File.WriteAllText(_summaryFilePath, summary);
+        }
     }
 }
