@@ -17,6 +17,11 @@ public class StatsManager : MonoBehaviour
     [SerializeField] private int lastEpisodesCount = 100;
     private string _summaryFilePath;
 
+    [SerializeField] private int aggregationInterval = 100;
+    private string _aggregatedCsvFilePath;
+    private int _chunkRunnerWins = 0;
+    private int _chunkPursuerWins = 0;
+
     private int _totalEpisodes = 0;
     private int _runnerWins = 0;
     private int _pursuerWins = 0;
@@ -33,6 +38,9 @@ public class StatsManager : MonoBehaviour
 
         if (runnerWon) _runnerWins++;
         if (pursuerWon) _pursuerWins++;
+
+        if (runnerWon) _chunkRunnerWins++;
+        if (pursuerWon) _chunkPursuerWins++;
 
         _runnerWinHistory.Enqueue(runnerWon);
         if (_runnerWinHistory.Count > lastEpisodesCount)
@@ -56,9 +64,28 @@ public class StatsManager : MonoBehaviour
 
         File.AppendAllText(_csvFilePath, dataLine);
 
+        SaveAccuracyInInterval();
+
         UpdateTextDisplay(winner, runnerJitter, pursuerJitter, nearMissTime);
     }
 
+    private void SaveAccuracyInInterval()
+    {
+        if (_totalEpisodes % aggregationInterval == 0)
+        {
+            float chunkRunnerAcc = (_chunkRunnerWins / (float)aggregationInterval);
+            float chunkPursuerAcc = (_chunkPursuerWins / (float)aggregationInterval);
+
+            string aggLine = $"{_totalEpisodes}," +
+                             $"{chunkPursuerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
+                             $"{chunkRunnerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
+
+            File.AppendAllText(_aggregatedCsvFilePath, aggLine);
+
+            _chunkRunnerWins = 0;
+            _chunkPursuerWins = 0;
+        }
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -86,8 +113,10 @@ public class StatsManager : MonoBehaviour
 
         _summaryFilePath = Path.Combine(directoryPath, $"Summary_{fileNameWithoutExt}_{timestamp}.txt");
         _csvFilePath = Path.Combine(directoryPath, finalFileName);
+        _aggregatedCsvFilePath = Path.Combine(directoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
         File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerJitter,PursuerJitter,NearMissTime\n");
+        File.WriteAllText(_aggregatedCsvFilePath, "Episode,Pursuer Accuracy,Runner Accuracy\n");
     }
 
     private void UpdateTextDisplay(string winnerName, float runnerJitter, float pursuerJitter, float nearMissTime)
