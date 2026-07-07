@@ -1,6 +1,7 @@
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class PursuerScript : Agent
@@ -13,10 +14,17 @@ public class PursuerScript : Agent
     [SerializeField] private float speed = 70f;
 
     private float previousDistanceToGoal;
+    private float moveSpeed = 3f;
 
     private float _prevMoveX = 0f;
     private float _prevMoveZ = 0f;
     private float _totalJitter = 0f;
+
+    public void RunnerEscaped()
+    {
+        AddReward(-1.0f);
+        EndEpisode();
+    }
 
     public float GetAverageJitter()
     {
@@ -65,17 +73,32 @@ public class PursuerScript : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
+        UpdateJitter(moveX, moveZ);
+
+        MoveAgent(moveX, moveZ);
+        Rotate(moveX, moveZ);
+        AddDenseReward();
+    }
+
+    private void UpdateJitter(float moveX, float moveZ)
+    {
         float deltaX = Mathf.Abs(moveX - _prevMoveX);
         float deltaZ = Mathf.Abs(moveZ - _prevMoveZ);
         _totalJitter += (deltaX + deltaZ);
 
         _prevMoveX = moveX;
         _prevMoveZ = moveZ;
-
-        float moveSpeed = 3f;
+    }
+    private void MoveAgent(float moveX, float moveZ)
+    {
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
-        Rotate(moveX, moveZ);
-        AddDenseReward();
+    }
+    private void CollectAndSaveDataToCSV(string winner)
+    {
+        float myJitter = GetAverageJitter();
+        float runnerJitter = runner != null ? runner.GetAverageJitter() : 0f;
+
+        StatsManager.Instance.SaveEpisodeStats(winner, myJitter, runnerJitter, 0f);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -83,12 +106,6 @@ public class PursuerScript : Agent
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
         continuousActions[0] = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
         continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
-    }
-
-    public void RunnerEscaped()
-    {
-        AddReward(-1.0f);
-        EndEpisode();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -104,11 +121,10 @@ public class PursuerScript : Agent
         {
             enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
             SetReward(1f);
+            CollectAndSaveDataToCSV(winner: "Pursuer");
 
-            float myJitter = GetAverageJitter();
-            float runnerJitter = runner != null ? runner.GetAverageJitter() : 0f;
+            if (runner != null) runner.GotCaught();
 
-            StatsManager.Instance.SaveEpisodeStats("Pursuer", runnerJitter, myJitter, 0f);
             EndEpisode();
         }
     }

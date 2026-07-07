@@ -16,6 +16,7 @@ public class RunnerScript : Agent
     [SerializeField] private float speed = 70f;
 
     private float previousDistanceToGoal;
+    private float moveSpeed = 3f;
 
     public float dangerZoneRadius = 5f;
     private float _nearMissTime = 0f;
@@ -23,6 +24,20 @@ public class RunnerScript : Agent
     private float _prevMoveZ = 0f;
     private float _totalJitter = 0f;
 
+    public void GotCaught()
+    {
+        AddReward(-1.0f);
+        EndEpisode();
+    }
+
+    public void UpdateNearMissTime()
+    {
+        float distance = Vector3.Distance(transform.position, pursuer.transform.position);
+        if (distance <= dangerZoneRadius)
+        {
+            _nearMissTime += Time.fixedDeltaTime;
+        }
+    }
     public float GetAverageJitter()
     {
         return StepCount > 0 ? _totalJitter / StepCount : 0f;
@@ -80,33 +95,41 @@ public class RunnerScript : Agent
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
 
+        UpdateJitter(moveX, moveZ);
+        MoveAgent(moveX, moveZ);
+        Rotate(moveX, moveZ);
+        AddDenseReward();
+
+        if (MaxStep > 0 && StepCount >= MaxStep - 1)
+        {
+            CollectAndSaveDataToCSV(winner: "Draw");
+
+            if (pursuer != null) pursuer.RunnerEscaped();
+
+            enviroManager.SetFloorMaterial(enviroManager.wallHit);
+            EndEpisode();
+        }
+    }
+
+    private void UpdateJitter(float moveX, float moveZ)
+    {
         float deltaX = Mathf.Abs(moveX - _prevMoveX);
         float deltaZ = Mathf.Abs(moveZ - _prevMoveZ);
         _totalJitter += (deltaX + deltaZ);
 
         _prevMoveX = moveX;
         _prevMoveZ = moveZ;
-
-        float moveSpeed = 3f;
+    }
+    private void MoveAgent(float moveX, float moveZ)
+    {
         transform.localPosition += new Vector3(moveX, 0f, moveZ) * Time.deltaTime * moveSpeed;
-        Rotate(moveX, moveZ);
-        AddDenseReward();
+    }
+    private void CollectAndSaveDataToCSV(string winner)
+    {
+        float myJitter = GetAverageJitter();
+        float pursuerJitter = pursuer != null ? pursuer.GetAverageJitter() : 0f;
 
-        // Jeœli min¹³ czas (Runner wygrywa)
-        if (MaxStep > 0 && StepCount >= MaxStep - 1)
-        {
-            float myJitter = GetAverageJitter();
-            float pursuerJitter = pursuer != null ? pursuer.GetAverageJitter() : 0f;
-
-            StatsManager.Instance.SaveEpisodeStats("Draw", myJitter, pursuerJitter, _nearMissTime);
-
-            if (pursuer != null)
-            {
-                pursuer.RunnerEscaped();
-            }
-            enviroManager.SetFloorMaterial(enviroManager.wallHit);
-            EndEpisode();
-        }
+        StatsManager.Instance.SaveEpisodeStats(winner, myJitter, pursuerJitter, _nearMissTime);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -118,14 +141,9 @@ public class RunnerScript : Agent
 
     private void FixedUpdate()
     {
-        // Calculate time spent close to the pursuer
         if (pursuer != null)
         {
-            float distance = Vector3.Distance(transform.position, pursuer.transform.position);
-            if (distance <= dangerZoneRadius)
-            {
-                _nearMissTime += Time.fixedDeltaTime;
-            }
+            UpdateNearMissTime();
         }
     }
 
@@ -134,25 +152,13 @@ public class RunnerScript : Agent
         if (other.gameObject.CompareTag("Goal"))
         {
             AddReward(1.0f);
+            CollectAndSaveDataToCSV(winner: "Runner");
 
-            float myJitter = GetAverageJitter();
-            float pursuerJitter = pursuer != null ? pursuer.GetAverageJitter() : 0f;
-
-            StatsManager.Instance.SaveEpisodeStats("Runner", myJitter, pursuerJitter, _nearMissTime);
-
-            if (pursuer != null)
-            {
-                pursuer.RunnerEscaped();
-            }
+            if (pursuer != null) pursuer.RunnerEscaped();
 
             enviroManager.SetFloorMaterial(enviroManager.runnerWin);
             EndEpisode();
         }
-    }
-    public void GotCaught()
-    {
-        AddReward(-1.0f);
-        EndEpisode(); // Nie wysy³amy statystyk, zrobi³ to ju¿ Pursuer!
     }
 
     private void OnCollisionEnter(Collision collision)
