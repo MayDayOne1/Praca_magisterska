@@ -57,8 +57,8 @@ public class StatsManager : MonoBehaviour
             _pursuerWinHistory.Dequeue();
         }
 
-        float runnerAcc = (_chunkRunnerWins / (float)_totalEpisodes);
-        float pursuerAcc = (_chunkPursuerWins / (float)_totalEpisodes);
+        float runnerAcc = (_runnerWins / (float)_totalEpisodes);
+        float pursuerAcc = (_pursuerWins / (float)_totalEpisodes);
 
         Academy.Instance.StatsRecorder.Add("Movement/Runner_Jitter", runnerJitter);
         Academy.Instance.StatsRecorder.Add("Movement/Pursuer_Jitter", pursuerJitter);
@@ -85,8 +85,8 @@ public class StatsManager : MonoBehaviour
             float chunkPursuerAcc = (_chunkPursuerWins / (float)aggregationInterval);
 
             string aggLine = $"{_totalEpisodes}," +
-                             $"{chunkPursuerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
-                             $"{chunkRunnerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
+                             $"{chunkRunnerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
+                             $"{chunkPursuerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
 
             File.AppendAllText(_aggregatedCsvFilePath, aggLine);
 
@@ -154,7 +154,7 @@ public class StatsManager : MonoBehaviour
         _aggregatedCsvFilePath = Path.Combine(runDirectoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
         File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,RunnerJitter,PursuerJitter,NearMissTime\n");
-        File.WriteAllText(_aggregatedCsvFilePath, "Episode,Pursuer Accuracy,Runner Accuracy\n");
+        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunncerAcc,PursuerAcc\n");
     }
 
     private void UpdateTextDisplay(string winnerName, float runnerJitter, float pursuerJitter, float nearMissTime)

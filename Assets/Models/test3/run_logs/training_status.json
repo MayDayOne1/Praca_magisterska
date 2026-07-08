@@ -1,0 +1,69 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 49949,
+                "file_path": "Assets\\Models\\test3\\Run\\Run-49949.onnx",
+                "reward": -0.027352043223800138,
+                "creation_time": 1783511062.3940039,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\test3\\Run\\Run-49949.pt"
+                ]
+            },
+            {
+                "steps": 99722,
+                "file_path": "Assets\\Models\\test3\\Run\\Run-99722.onnx",
+                "reward": 0.16660031396895647,
+                "creation_time": 1783511201.1955755,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\test3\\Run\\Run-99722.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 99722,
+            "file_path": "Assets\\Models\\test3\\Run.onnx",
+            "reward": 0.16660031396895647,
+            "creation_time": 1783511201.1955755,
+            "auxillary_file_paths": [
+                "Assets\\Models\\test3\\Run\\Run-99722.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 49949,
+                "file_path": "Assets\\Models\\test3\\Pursue\\Pursue-49949.onnx",
+                "reward": 0.20585704478435218,
+                "creation_time": 1783511062.5267925,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\test3\\Pursue\\Pursue-49949.pt"
+                ]
+            },
+            {
+                "steps": 99722,
+                "file_path": "Assets\\Models\\test3\\Pursue\\Pursue-99722.onnx",
+                "reward": 0.3953859487302461,
+                "creation_time": 1783511201.3196962,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\test3\\Pursue\\Pursue-99722.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 99722,
+            "file_path": "Assets\\Models\\test3\\Pursue.onnx",
+            "reward": 0.3953859487302461,
+            "creation_time": 1783511201.3196962,
+            "auxillary_file_paths": [
+                "Assets\\Models\\test3\\Pursue\\Pursue-99722.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
