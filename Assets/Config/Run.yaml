@@ -3,13 +3,11 @@ behaviors:
     trainer_type: ppo
 
     hyperparameters:
-      # Hyperparameters common to PPO and SAC
       batch_size: 1024
       buffer_size: 10240
       learning_rate: 3.0e-4
       learning_rate_schedule: linear
 
-      # PPO-specific hyperparameters
       beta: 5.0e-3
       beta_schedule: constant
       epsilon: 0.2
@@ -18,18 +16,15 @@ behaviors:
       num_epoch: 3
       shared_critic: False
 
-    # Configuration of the neural network (common to PPO/SAC)
     network_settings:
       vis_encode_type: simple
       normalize: false
       hidden_units: 128
       num_layers: 2
-      # memory
       memory:
         sequence_length: 64
         memory_size: 256
 
-    # Trainer configurations common to all trainers
     max_steps: 5.0e5
     time_horizon: 64
     summary_freq: 10000
@@ -42,13 +37,11 @@ behaviors:
     trainer_type: ppo
 
     hyperparameters:
-      # Hyperparameters common to PPO and SAC
       batch_size: 1024
       buffer_size: 10240
       learning_rate: 3.0e-4
       learning_rate_schedule: linear
 
-      # PPO-specific hyperparameters
       beta: 5.0e-3
       beta_schedule: constant
       epsilon: 0.2
@@ -57,18 +50,15 @@ behaviors:
       num_epoch: 3
       shared_critic: False
 
-    # Configuration of the neural network (common to PPO/SAC)
     network_settings:
       vis_encode_type: simple
       normalize: false
       hidden_units: 128
       num_layers: 2
-      # memory
       memory:
         sequence_length: 64
         memory_size: 256
 
-    # Trainer configurations common to all trainers
     max_steps: 5.0e5
     time_horizon: 64
     summary_freq: 10000

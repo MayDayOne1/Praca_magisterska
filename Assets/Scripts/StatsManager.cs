@@ -22,6 +22,9 @@ public class StatsManager : MonoBehaviour
     private int _chunkRunnerWins = 0;
     private int _chunkPursuerWins = 0;
 
+    [SerializeField] private int testEpisodesLimit = 100;
+    private bool _isInferenceMode = false;
+
     private int _totalEpisodes = 0;
     private int _runnerWins = 0;
     private int _pursuerWins = 0;
@@ -54,19 +57,24 @@ public class StatsManager : MonoBehaviour
             _pursuerWinHistory.Dequeue();
         }
 
+        float runnerAcc = (_chunkRunnerWins / (float)_totalEpisodes);
+        float pursuerAcc = (_chunkPursuerWins / (float)_totalEpisodes);
+
         Academy.Instance.StatsRecorder.Add("Movement/Runner_Jitter", runnerJitter);
         Academy.Instance.StatsRecorder.Add("Movement/Pursuer_Jitter", pursuerJitter);
         Academy.Instance.StatsRecorder.Add("Gameplay/Near_Miss_Time", nearMissTime);
 
         string dataLine = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-            "{0},{1},{2:F3},{3:F3},{4:F2}\n",
-            _totalEpisodes, winner, runnerJitter, pursuerJitter, nearMissTime);
+            "{0},{1},{2:F3},{3:F3},{4:F3},{5:F3},{6:F2}\n",
+            _totalEpisodes, winner, runnerAcc, pursuerAcc, runnerJitter, pursuerJitter, nearMissTime);
 
         File.AppendAllText(_csvFilePath, dataLine);
 
         SaveAccuracyInInterval();
 
         UpdateTextDisplay(winner, runnerJitter, pursuerJitter, nearMissTime);
+
+        if(_isInferenceMode && _totalEpisodes >= testEpisodesLimit) StopTest();
     }
 
     private void SaveAccuracyInInterval()
@@ -99,6 +107,28 @@ public class StatsManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _isInferenceMode = !Academy.Instance.IsCommunicatorOn;
+
+        if (_isInferenceMode)
+        {
+            Debug.Log("Inference");
+        }
+    }
+
+    private void StopTest()
+    {
+        Debug.Log($"Reached limit of {testEpisodesLimit} epochs. Stopping...");
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        
+    }
+
     private void StartLoggingToCSV()
     {
         string directoryPath = Path.Combine(Application.dataPath, "..", "csv");
@@ -115,7 +145,7 @@ public class StatsManager : MonoBehaviour
         _csvFilePath = Path.Combine(directoryPath, finalFileName);
         _aggregatedCsvFilePath = Path.Combine(directoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
-        File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerJitter,PursuerJitter,NearMissTime\n");
+        File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,RunnerJitter,PursuerJitter,NearMissTime\n");
         File.WriteAllText(_aggregatedCsvFilePath, "Episode,Pursuer Accuracy,Runner Accuracy\n");
     }
 

@@ -5,7 +5,6 @@ using System.Diagnostics;
 public class TrainerMenu : EditorWindow
 {
     private string runId = "my-test";
-
     private bool useForce = true;
 
     [MenuItem("ML-Agents/Training Menu")]
