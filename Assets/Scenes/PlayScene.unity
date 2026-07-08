@@ -3162,6 +3162,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimerText
       objectReference: {fileID: 0}
+    - target: {fileID: 3781500090465504164, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
+      propertyPath: limitMinutes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781500090465504164, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
+      propertyPath: useTimeLimit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4505577373573746882, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6452,6 +6460,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
+  runner: {fileID: 3579228791695689955}
   denseRewards: 1
   wallHitEndsEpisode: 0
   enviroManager: {fileID: 8673463546155483628}
@@ -6971,6 +6980,7 @@ MonoBehaviour:
   targetTransform: {fileID: 8168974160818360606}
   pursuerTransform: {fileID: 561193811849805984}
   speed: 70
+  dangerZoneRadius: 5
 --- !u!65 &3609595195726568485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8198,7 +8208,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 452f3e141e69840439ce919895619a1b, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: f7bc289e50d37fa479fac59213e3f364, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Run
@@ -8812,7 +8822,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 92b33e7c0a02378409dafc454aff650a, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 6b8183108d763be46b3b4bbeee0e9955, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Pursue
