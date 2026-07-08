@@ -1,6 +1,7 @@
-using UnityEngine;
+using System.Globalization;
 using TMPro;
 using Unity.MLAgents;
+using UnityEngine;
 
 public class StepCounterUI : MonoBehaviour
 {
@@ -11,16 +12,21 @@ public class StepCounterUI : MonoBehaviour
     [SerializeField] private bool enforceStepLimit = true;
     [SerializeField] private long stepLimit = 100000;
 
+    private NumberFormatInfo _spaceFormat;
+
     private void Start()
     {
         stepText = GetComponent<TextMeshProUGUI>();
+
+        _spaceFormat = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+        _spaceFormat.NumberGroupSeparator = " ";
     }
 
     void Update()
     {
         long globalPythonSteps = ((long)Academy.Instance.StepCount / decisionPeriod) * numberOfEnvironments;
 
-        stepText.text = $"Progress {globalPythonSteps:N0} steps";
+        stepText.text = $"Progress {globalPythonSteps.ToString("N0", _spaceFormat)} steps";
 
         if (enforceStepLimit && globalPythonSteps >= stepLimit)
         {

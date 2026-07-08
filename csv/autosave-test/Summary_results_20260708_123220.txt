@@ -1,0 +1,8 @@
+--- FINAL SUMMARY ---
+Total Episodes Played: 1
+Overall Runner Wins: 0
+Overall Pursuer Wins: 1
+
+--- RECENT PERFORMANCE (Last 100 episodes) ---
+Runner Recent Accuracy: 0.00%
+Pursuer Recent Accuracy: 100.00%
