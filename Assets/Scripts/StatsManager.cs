@@ -154,7 +154,7 @@ public class StatsManager : MonoBehaviour
         _aggregatedCsvFilePath = Path.Combine(runDirectoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
         File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,RunnerJitter,PursuerJitter,NearMissTime\n");
-        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunncerAcc,PursuerAcc\n");
+        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunnerAcc,PursuerAcc\n");
     }
 
     private void UpdateTextDisplay(string winnerName, float runnerJitter, float pursuerJitter, float nearMissTime)
