@@ -13,17 +13,32 @@ public class TrainerMenu : EditorWindow
         GetWindow<TrainerMenu>("Training Menu");
     }
 
+    private void OnEnable()
+    {
+        runId = PlayerPrefs.GetString("CurrentRunId", "my-test");
+    }
+
     void OnGUI()
     {
         GUILayout.Label("Training Config", EditorStyles.boldLabel);
 
-        runId = EditorGUILayout.TextField("Run ID:", runId);
+        string newRunId = EditorGUILayout.TextField("Run ID:", runId);
+
+        if (newRunId != runId)
+        {
+            runId = newRunId;
+            PlayerPrefs.SetString("CurrentRunId", runId);
+            PlayerPrefs.Save();
+        }
+
         useForce = EditorGUILayout.Toggle("Use --force:", useForce);
 
         GUILayout.Space(10);
 
         if (GUILayout.Button("Enable Training"))
         {
+            PlayerPrefs.SetString("CurrentRunId", runId);
+            PlayerPrefs.Save();
             LaunchCmd(runId, useForce);
         }
     }

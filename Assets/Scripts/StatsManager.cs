@@ -131,19 +131,27 @@ public class StatsManager : MonoBehaviour
 
     private void StartLoggingToCSV()
     {
-        string directoryPath = Path.Combine(Application.dataPath, "..", "csv");
-        if (!Directory.Exists(directoryPath))
+        string currentRunId = PlayerPrefs.GetString("CurrentRunId", "default_run");
+
+        string baseDirectoryPath = Path.Combine(Application.dataPath, "..", "csv");
+        string runDirectoryPath = Path.Combine(baseDirectoryPath, currentRunId);
+
+        if (!System.IO.Directory.Exists(baseDirectoryPath))
         {
-            Directory.CreateDirectory(directoryPath);
+            System.IO.Directory.CreateDirectory(baseDirectoryPath);
+        }
+        if (!System.IO.Directory.Exists(runDirectoryPath))
+        {
+            System.IO.Directory.CreateDirectory(runDirectoryPath);
         }
 
         string timestamp = System.DateTime.Now.ToString("yyyyMMdd_HHmmss");
         string fileNameWithoutExt = Path.GetFileNameWithoutExtension(csvFileName);
         string finalFileName = $"{fileNameWithoutExt}_{timestamp}.csv";
 
-        _summaryFilePath = Path.Combine(directoryPath, $"Summary_{fileNameWithoutExt}_{timestamp}.txt");
-        _csvFilePath = Path.Combine(directoryPath, finalFileName);
-        _aggregatedCsvFilePath = Path.Combine(directoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
+        _summaryFilePath = Path.Combine(runDirectoryPath, $"Summary_{fileNameWithoutExt}_{timestamp}.txt");
+        _csvFilePath = Path.Combine(runDirectoryPath, finalFileName);
+        _aggregatedCsvFilePath = Path.Combine(runDirectoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
         File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,RunnerJitter,PursuerJitter,NearMissTime\n");
         File.WriteAllText(_aggregatedCsvFilePath, "Episode,Pursuer Accuracy,Runner Accuracy\n");
