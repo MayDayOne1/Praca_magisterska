@@ -7,7 +7,7 @@ public class TensorBoardMenu
     [MenuItem("ML-Agents/Launch TensorBoard")]
     public static void Launch()
     {
-        ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c \"venv\\Scripts\\activate.bat && tensorboard --logdir results\"");
+        ProcessStartInfo processInfo = new ProcessStartInfo("cmd.exe", "/c \"venv\\Scripts\\activate.bat && tensorboard --logdir Assets\\Models\"");
         processInfo.WorkingDirectory = System.IO.Directory.GetCurrentDirectory();
         Process.Start(processInfo);
 

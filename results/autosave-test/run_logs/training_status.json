@@ -1,45 +1,45 @@
 {
-    "Run": {
-        "checkpoints": [
-            {
-                "steps": 16759,
-                "file_path": "results\\autosave-test\\Run\\Run-16759.onnx",
-                "reward": -0.09354658176501592,
-                "creation_time": 1783506585.8553507,
-                "auxillary_file_paths": [
-                    "results\\autosave-test\\Run\\Run-16759.pt"
-                ]
-            }
-        ],
-        "final_checkpoint": {
-            "steps": 16759,
-            "file_path": "results\\autosave-test\\Run.onnx",
-            "reward": -0.09354658176501592,
-            "creation_time": 1783506585.8553507,
-            "auxillary_file_paths": [
-                "results\\autosave-test\\Run\\Run-16759.pt"
-            ]
-        }
-    },
     "Pursue": {
         "checkpoints": [
             {
-                "steps": 16759,
-                "file_path": "results\\autosave-test\\Pursue\\Pursue-16759.onnx",
-                "reward": -0.8097812210520109,
-                "creation_time": 1783506585.9552085,
+                "steps": 9775,
+                "file_path": "results\\autosave-test\\Pursue\\Pursue-9775.onnx",
+                "reward": -0.7192457600989762,
+                "creation_time": 1783509263.5358303,
                 "auxillary_file_paths": [
-                    "results\\autosave-test\\Pursue\\Pursue-16759.pt"
+                    "results\\autosave-test\\Pursue\\Pursue-9775.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 16759,
+            "steps": 9775,
             "file_path": "results\\autosave-test\\Pursue.onnx",
-            "reward": -0.8097812210520109,
-            "creation_time": 1783506585.9552085,
+            "reward": -0.7192457600989762,
+            "creation_time": 1783509263.5358303,
             "auxillary_file_paths": [
-                "results\\autosave-test\\Pursue\\Pursue-16759.pt"
+                "results\\autosave-test\\Pursue\\Pursue-9775.pt"
+            ]
+        }
+    },
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 9775,
+                "file_path": "results\\autosave-test\\Run\\Run-9775.onnx",
+                "reward": -0.05135663253638674,
+                "creation_time": 1783509263.6559749,
+                "auxillary_file_paths": [
+                    "results\\autosave-test\\Run\\Run-9775.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9775,
+            "file_path": "results\\autosave-test\\Run.onnx",
+            "reward": -0.05135663253638674,
+            "creation_time": 1783509263.6559749,
+            "auxillary_file_paths": [
+                "results\\autosave-test\\Run\\Run-9775.pt"
             ]
         }
     },

@@ -46,7 +46,7 @@ public class TrainerMenu : EditorWindow
     private void LaunchCmd(string id, bool force)
     {
         string forceFlag = force ? " --force" : "";
-        string command = $"/k \"venv\\Scripts\\activate.bat && mlagents-learn Assets\\Config\\Run.yaml --run-id={id}{forceFlag}\"";
+        string command = $"/k \"venv\\Scripts\\activate.bat && mlagents-learn Assets\\Config\\Run.yaml --run-id={id} --results-dir=Assets\\Models{forceFlag}\"";
 
         ProcessStartInfo processInfo = new ProcessStartInfo();
         processInfo.FileName = "cmd.exe";

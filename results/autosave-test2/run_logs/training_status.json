@@ -1,0 +1,51 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 29992,
+                "file_path": "results\\autosave-test2\\Run\\Run-29992.onnx",
+                "reward": 0.10264104782901187,
+                "creation_time": 1783509444.604789,
+                "auxillary_file_paths": [
+                    "results\\autosave-test2\\Run\\Run-29992.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 29992,
+            "file_path": "results\\autosave-test2\\Run.onnx",
+            "reward": 0.10264104782901187,
+            "creation_time": 1783509444.604789,
+            "auxillary_file_paths": [
+                "results\\autosave-test2\\Run\\Run-29992.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 29992,
+                "file_path": "results\\autosave-test2\\Pursue\\Pursue-29992.onnx",
+                "reward": -0.393264562331347,
+                "creation_time": 1783509444.7194757,
+                "auxillary_file_paths": [
+                    "results\\autosave-test2\\Pursue\\Pursue-29992.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 29992,
+            "file_path": "results\\autosave-test2\\Pursue.onnx",
+            "reward": -0.393264562331347,
+            "creation_time": 1783509444.7194757,
+            "auxillary_file_paths": [
+                "results\\autosave-test2\\Pursue\\Pursue-29992.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
