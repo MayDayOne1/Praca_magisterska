@@ -4,6 +4,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private bool useTimeLimit = false;
+    [SerializeField] private int limitHours = 0;
     [SerializeField] private int limitMinutes = 0;
     [SerializeField] private int limitSeconds = 0;
 
@@ -24,13 +25,13 @@ public class Timer : MonoBehaviour
 
     private void UpdateTimerDisplay()
     {
+        int hours = Mathf.FloorToInt(elapsedTime / 3600);
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
-
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
 
         if (timerText != null)
         {
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timerText.text = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
         }
     }
 
@@ -38,7 +39,7 @@ public class Timer : MonoBehaviour
     {
         if (!useTimeLimit) return;
 
-        float limitInSeconds = (limitMinutes * 60f) + limitSeconds;
+        float limitInSeconds = (limitHours * 3600f) + (limitMinutes * 60f) + limitSeconds;
 
         if (elapsedTime >= limitInSeconds)
         {
