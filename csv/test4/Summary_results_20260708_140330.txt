@@ -1,8 +1,0 @@
---- FINAL SUMMARY ---
-Total Episodes Played: 546
-Overall Runner Wins: 131
-Overall Pursuer Wins: 156
-
---- RECENT PERFORMANCE (Last 100 episodes) ---
-Runner Recent Accuracy: 38.00%
-Pursuer Recent Accuracy: 47.00%
