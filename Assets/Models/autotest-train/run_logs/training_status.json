@@ -2,44 +2,44 @@
     "Pursue": {
         "checkpoints": [
             {
-                "steps": 19127,
-                "file_path": "Assets\\Models\\autotest-train\\Pursue\\Pursue-19127.onnx",
-                "reward": -0.31314758145633864,
-                "creation_time": 1783595980.6393328,
+                "steps": 34977,
+                "file_path": "Assets\\Models\\autotest-train\\Pursue\\Pursue-34977.onnx",
+                "reward": -0.051782598364211264,
+                "creation_time": 1783597045.4090643,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\autotest-train\\Pursue\\Pursue-19127.pt"
+                    "Assets\\Models\\autotest-train\\Pursue\\Pursue-34977.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 19127,
+            "steps": 34977,
             "file_path": "Assets\\Models\\autotest-train\\Pursue.onnx",
-            "reward": -0.31314758145633864,
-            "creation_time": 1783595980.6393328,
+            "reward": -0.051782598364211264,
+            "creation_time": 1783597045.4090643,
             "auxillary_file_paths": [
-                "Assets\\Models\\autotest-train\\Pursue\\Pursue-19127.pt"
+                "Assets\\Models\\autotest-train\\Pursue\\Pursue-34977.pt"
             ]
         }
     },
     "Run": {
         "checkpoints": [
             {
-                "steps": 19127,
-                "file_path": "Assets\\Models\\autotest-train\\Run\\Run-19127.onnx",
-                "reward": -0.189428969834219,
-                "creation_time": 1783595980.7771773,
+                "steps": 34977,
+                "file_path": "Assets\\Models\\autotest-train\\Run\\Run-34977.onnx",
+                "reward": 0.006614643703436568,
+                "creation_time": 1783597045.57377,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\autotest-train\\Run\\Run-19127.pt"
+                    "Assets\\Models\\autotest-train\\Run\\Run-34977.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 19127,
+            "steps": 34977,
             "file_path": "Assets\\Models\\autotest-train\\Run.onnx",
-            "reward": -0.189428969834219,
-            "creation_time": 1783595980.7771773,
+            "reward": 0.006614643703436568,
+            "creation_time": 1783597045.57377,
             "auxillary_file_paths": [
-                "Assets\\Models\\autotest-train\\Run\\Run-19127.pt"
+                "Assets\\Models\\autotest-train\\Run\\Run-34977.pt"
             ]
         }
     },

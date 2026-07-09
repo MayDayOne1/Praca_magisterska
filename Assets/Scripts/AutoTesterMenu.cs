@@ -37,14 +37,14 @@ public class AutoTesterMenu : EditorWindow
             int total = EditorPrefs.GetInt(PrefTotalRuns, 0);
             EditorGUILayout.HelpBox($"Test in progress...\nRun {current}/{total}.", MessageType.Info);
 
-            if (GUILayout.Button("Abort tests", GUILayout.Height(30)))
+            if (GUILayout.Button("Abort tests"))
             {
                 StopAutoTests();
             }
         }
         else
         {
-            if (GUILayout.Button("Begin tests", GUILayout.Height(30)))
+            if (GUILayout.Button("Begin tests"))
             {
                 StartAutoTests();
             }
