@@ -39,14 +39,18 @@ public class StatsManager : MonoBehaviour
     private float _totalPursuerJitter = 0f;
     private float _totalNearMissTime = 0f;
 
+    private int _chunkEpisodeSteps = 0;
+    private long _totalEpisodeSteps = 0;
+
     private Queue<bool> _runnerWinHistory = new Queue<bool>();
     private Queue<bool> _pursuerWinHistory = new Queue<bool>();
     private Queue<bool> _drawsHistory = new Queue<bool>();
     private Queue<float> _runnerJitterHistory = new Queue<float>();
     private Queue<float> _pursuerJitterHistory = new Queue<float>();
     private Queue<float> _nearMissHistory = new Queue<float>();
+    private Queue<int> _episodeStepsHistory = new Queue<int>();
 
-    public void SaveEpisodeStats(string winner, float runnerJitter, float pursuerJitter, float nearMissTime)
+    public void SaveEpisodeStats(string winner, float runnerJitter, float pursuerJitter, float nearMissTime, int episodeSteps)
     {
         _totalEpisodes++;
 
@@ -65,10 +69,12 @@ public class StatsManager : MonoBehaviour
         _totalRunnerJitter += runnerJitter;
         _totalPursuerJitter += pursuerJitter;
         _totalNearMissTime += nearMissTime;
+        _totalEpisodeSteps += episodeSteps;
 
         _chunkRunnerJitter += runnerJitter;
         _chunkPursuerJitter += pursuerJitter;
         _chunkNearMissTime += nearMissTime;
+        _chunkEpisodeSteps += episodeSteps;
 
 
         _runnerWinHistory.Enqueue(runnerWon);
@@ -92,25 +98,27 @@ public class StatsManager : MonoBehaviour
         _runnerJitterHistory.Enqueue(runnerJitter);
         _pursuerJitterHistory.Enqueue(pursuerJitter);
         _nearMissHistory.Enqueue(nearMissTime);
+        _episodeStepsHistory.Enqueue(episodeSteps);
 
         if (_runnerJitterHistory.Count > lastEpisodesCount)
         {
             _runnerJitterHistory.Dequeue();
             _pursuerJitterHistory.Dequeue();
             _nearMissHistory.Dequeue();
+            _episodeStepsHistory.Dequeue();
         }
 
         float runnerAcc = (_runnerWins / (float)_totalEpisodes);
         float pursuerAcc = (_pursuerWins / (float)_totalEpisodes);
         float drawsPercentage = (_drawCount / (float)_totalEpisodes);
 
-        Academy.Instance.StatsRecorder.Add("Movement/Runner_Jitter", runnerJitter);
-        Academy.Instance.StatsRecorder.Add("Movement/Pursuer_Jitter", pursuerJitter);
-        Academy.Instance.StatsRecorder.Add("Gameplay/Near_Miss_Time", nearMissTime);
+        //Academy.Instance.StatsRecorder.Add("Movement/Runner_Jitter", runnerJitter);
+        //Academy.Instance.StatsRecorder.Add("Movement/Pursuer_Jitter", pursuerJitter);
+        //Academy.Instance.StatsRecorder.Add("Gameplay/Near_Miss_Time", nearMissTime);
 
         string dataLine = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-            "{0},{1},{2:F3},{3:F3},{4:F3},{5:F3},{6:F3}, {7:F2}\n",
-            _totalEpisodes, winner, runnerAcc, pursuerAcc, drawsPercentage, runnerJitter, pursuerJitter, nearMissTime);
+            "{0},{1},{2:F3},{3:F3},{4:F3},{5:F3},{6:F3},{7:F2},{8:F2}\n",
+            _totalEpisodes, winner, runnerAcc, pursuerAcc, drawsPercentage, runnerJitter, pursuerJitter, nearMissTime, episodeSteps);
 
         File.AppendAllText(_csvFilePath, dataLine);
 
@@ -132,6 +140,7 @@ public class StatsManager : MonoBehaviour
             float chunkRunnerJitterAvg = _chunkRunnerJitter / aggregationInterval;
             float chunkPursuerJitterAvg = _chunkPursuerJitter / aggregationInterval;
             float chunkNearMissAvg = _chunkNearMissTime / aggregationInterval;
+            float chunkEpisodeStepsAvg = (float)_chunkEpisodeSteps / aggregationInterval;
 
             string aggLine = $"{_totalEpisodes}," +
                              $"{chunkRunnerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
@@ -139,7 +148,8 @@ public class StatsManager : MonoBehaviour
                              $"{chunkDrawsPercentage.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
                              $"{chunkRunnerJitterAvg.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
                              $"{chunkPursuerJitterAvg.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
-                             $"{chunkNearMissAvg.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
+                             $"{chunkNearMissAvg.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
+                             $"{chunkEpisodeStepsAvg.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
 
             File.AppendAllText(_aggregatedCsvFilePath, aggLine);
 
@@ -150,6 +160,7 @@ public class StatsManager : MonoBehaviour
             _chunkRunnerJitter = 0f;
             _chunkPursuerJitter = 0f;
             _chunkNearMissTime = 0f;
+            _chunkEpisodeSteps = 0;
         }
     }
     private void Awake()
@@ -206,8 +217,8 @@ public class StatsManager : MonoBehaviour
         _csvFilePath = Path.Combine(runDirectoryPath, finalFileName);
         _aggregatedCsvFilePath = Path.Combine(runDirectoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
-        File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime\n");
-        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime\n");
+        File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime,EpisodeSteps\n");
+        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime,EpisodeStepsAvg\n");
     }
 
     private void UpdateTextDisplay(string winnerName, float runnerJitter, float pursuerJitter, float nearMissTime)
@@ -239,15 +250,15 @@ public class StatsManager : MonoBehaviour
             float pursuerAvg = _pursuerWinHistory.Count > 0 ? (float)_pursuerWinHistory.Count(w => w) / _pursuerWinHistory.Count * 100f : 0f;
             float drawAvg = _drawsHistory.Count > 0 ? (float)_drawsHistory.Count(w => w) / _drawsHistory.Count * 100f : 0f;
 
-            // Obliczanie œrednich z ca³ego treningu (Overall)
             float overallRunnerJitterAvg = _totalRunnerJitter / _totalEpisodes;
             float overallPursuerJitterAvg = _totalPursuerJitter / _totalEpisodes;
             float overallNearMissAvg = _totalNearMissTime / _totalEpisodes;
+            float overallEpisodeStepsAvg = (float)_totalEpisodeSteps / _totalEpisodes;
 
-            // Obliczanie œrednich z ostatnich X epok (Recent) za pomoc¹ wbudowanej w C# metody Average() z LINQ
             float recentRunnerJitterAvg = _runnerJitterHistory.Count > 0 ? _runnerJitterHistory.Average() : 0f;
             float recentPursuerJitterAvg = _pursuerJitterHistory.Count > 0 ? _pursuerJitterHistory.Average() : 0f;
             float recentNearMissAvg = _nearMissHistory.Count > 0 ? _nearMissHistory.Average() : 0f;
+            float recentEpisodeStepsAvg = _episodeStepsHistory.Count > 0 ? (float)_episodeStepsHistory.Average() : 0f;
 
             string summary = $"--- FINAL SUMMARY ---\n" +
                              $"Total Episodes Played: {_totalEpisodes}\n" +
@@ -256,14 +267,16 @@ public class StatsManager : MonoBehaviour
                              $"Overall Draws: {_drawCount}\n" +
                              $"Overall Runner Jitter Avg: {overallRunnerJitterAvg:F2}\n" +
                              $"Overall Pursuer Jitter Avg: {overallPursuerJitterAvg:F2}\n" +
-                             $"Overall Near Miss Time Avg: {overallNearMissAvg:F2}s\n\n" +
+                             $"Overall Near Miss Time Avg: {overallNearMissAvg:F2}s\n" +
+                             $"Overall Episode Length Avg: {overallEpisodeStepsAvg:F0} steps\n\n" +
                              $"--- RECENT PERFORMANCE (Last {lastEpisodesCount} episodes) ---\n" +
                              $"Runner Recent Accuracy: {runnerAvg:F2}%\n" +
                              $"Pursuer Recent Accuracy: {pursuerAvg:F2}%\n" +
                              $"Draws Percentage: {drawAvg:F2}%\n" +
                              $"Recent Runner Jitter Avg: {recentRunnerJitterAvg:F2}\n" +
                              $"Recent Pursuer Jitter Avg: {recentPursuerJitterAvg:F2}\n" +
-                             $"Recent Near Miss Time Avg: {recentNearMissAvg:F2}s\n";
+                             $"Recent Near Miss Time Avg: {recentNearMissAvg:F2}s\n" +
+                             $"Recent Episode Length Avg: {recentEpisodeStepsAvg:F0} steps\n";
 
             File.WriteAllText(_summaryFilePath, summary);
         }

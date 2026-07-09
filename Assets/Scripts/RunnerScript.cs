@@ -129,7 +129,7 @@ public class RunnerScript : Agent
         float myJitter = GetAverageJitter();
         float pursuerJitter = pursuer != null ? pursuer.GetAverageJitter() : 0f;
 
-        StatsManager.Instance.SaveEpisodeStats(winner, myJitter, pursuerJitter, _nearMissTime);
+        StatsManager.Instance.SaveEpisodeStats(winner, myJitter, pursuerJitter, _nearMissTime, StepCount);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

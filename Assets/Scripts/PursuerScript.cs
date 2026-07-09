@@ -98,7 +98,7 @@ public class PursuerScript : Agent
         float myJitter = GetAverageJitter();
         float runnerJitter = runner != null ? runner.GetAverageJitter() : 0f;
 
-        StatsManager.Instance.SaveEpisodeStats(winner, myJitter, runnerJitter, 0f);
+        StatsManager.Instance.SaveEpisodeStats(winner, myJitter, runnerJitter, 0f, StepCount);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
