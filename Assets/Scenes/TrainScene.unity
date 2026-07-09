@@ -28862,6 +28862,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 109621909}
     m_Modifications:
     - target: {fileID: -7266426317568817759, guid: f16d51d599aadc240b5f9267cbf38bf7, type: 3}
+      propertyPath: stepLimit
+      value: 5000000
+      objectReference: {fileID: 0}
+    - target: {fileID: -7266426317568817759, guid: f16d51d599aadc240b5f9267cbf38bf7, type: 3}
       propertyPath: targetAgent
       value: 
       objectReference: {fileID: 583486751}

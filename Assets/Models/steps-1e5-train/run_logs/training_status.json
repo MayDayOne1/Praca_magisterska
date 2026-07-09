@@ -1,0 +1,69 @@
+{
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 49969,
+                "file_path": "Assets\\Models\\steps-1e5-train\\Pursue\\Pursue-49969.onnx",
+                "reward": -0.20671010270182574,
+                "creation_time": 1783513207.0515792,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\steps-1e5-train\\Pursue\\Pursue-49969.pt"
+                ]
+            },
+            {
+                "steps": 99453,
+                "file_path": "Assets\\Models\\steps-1e5-train\\Pursue\\Pursue-99453.onnx",
+                "reward": 0.2737021037610248,
+                "creation_time": 1783513351.95744,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\steps-1e5-train\\Pursue\\Pursue-99453.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 99453,
+            "file_path": "Assets\\Models\\steps-1e5-train\\Pursue.onnx",
+            "reward": 0.2737021037610248,
+            "creation_time": 1783513351.95744,
+            "auxillary_file_paths": [
+                "Assets\\Models\\steps-1e5-train\\Pursue\\Pursue-99453.pt"
+            ]
+        }
+    },
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 49969,
+                "file_path": "Assets\\Models\\steps-1e5-train\\Run\\Run-49969.onnx",
+                "reward": 0.2680064546709348,
+                "creation_time": 1783513207.2008297,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\steps-1e5-train\\Run\\Run-49969.pt"
+                ]
+            },
+            {
+                "steps": 99453,
+                "file_path": "Assets\\Models\\steps-1e5-train\\Run\\Run-99453.onnx",
+                "reward": 0.27878743790643057,
+                "creation_time": 1783513352.094603,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\steps-1e5-train\\Run\\Run-99453.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 99453,
+            "file_path": "Assets\\Models\\steps-1e5-train\\Run.onnx",
+            "reward": 0.27878743790643057,
+            "creation_time": 1783513352.094603,
+            "auxillary_file_paths": [
+                "Assets\\Models\\steps-1e5-train\\Run\\Run-99453.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}

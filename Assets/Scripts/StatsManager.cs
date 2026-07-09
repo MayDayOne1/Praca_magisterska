@@ -21,6 +21,7 @@ public class StatsManager : MonoBehaviour
     private string _aggregatedCsvFilePath;
     private int _chunkRunnerWins = 0;
     private int _chunkPursuerWins = 0;
+    private int _chunkDraws = 0;
 
     [SerializeField] private int testEpisodesLimit = 100;
     private bool _isInferenceMode = false;
@@ -28,9 +29,11 @@ public class StatsManager : MonoBehaviour
     private int _totalEpisodes = 0;
     private int _runnerWins = 0;
     private int _pursuerWins = 0;
+    private int _drawCount = 0;
 
     private Queue<bool> _runnerWinHistory = new Queue<bool>();
     private Queue<bool> _pursuerWinHistory = new Queue<bool>();
+    private Queue<bool> _drawsHistory = new Queue<bool>();
 
     public void SaveEpisodeStats(string winner, float runnerJitter, float pursuerJitter, float nearMissTime)
     {
@@ -38,12 +41,15 @@ public class StatsManager : MonoBehaviour
 
         bool runnerWon = (winner == "Runner");
         bool pursuerWon = (winner == "Pursuer");
+        bool isDraw = (winner == "Draw");
 
         if (runnerWon) _runnerWins++;
         if (pursuerWon) _pursuerWins++;
+        if (isDraw) _drawCount++;
 
         if (runnerWon) _chunkRunnerWins++;
         if (pursuerWon) _chunkPursuerWins++;
+        if (isDraw) _chunkDraws++;
 
         _runnerWinHistory.Enqueue(runnerWon);
         if (_runnerWinHistory.Count > lastEpisodesCount)
@@ -57,16 +63,23 @@ public class StatsManager : MonoBehaviour
             _pursuerWinHistory.Dequeue();
         }
 
+        _drawsHistory.Enqueue(isDraw);
+        if (_drawsHistory.Count > lastEpisodesCount)
+        {
+            _drawsHistory.Dequeue();
+        }
+
         float runnerAcc = (_runnerWins / (float)_totalEpisodes);
         float pursuerAcc = (_pursuerWins / (float)_totalEpisodes);
+        float drawsPercentage = (_drawCount / (float)_totalEpisodes);
 
         Academy.Instance.StatsRecorder.Add("Movement/Runner_Jitter", runnerJitter);
         Academy.Instance.StatsRecorder.Add("Movement/Pursuer_Jitter", pursuerJitter);
         Academy.Instance.StatsRecorder.Add("Gameplay/Near_Miss_Time", nearMissTime);
 
         string dataLine = string.Format(System.Globalization.CultureInfo.InvariantCulture,
-            "{0},{1},{2:F3},{3:F3},{4:F3},{5:F3},{6:F2}\n",
-            _totalEpisodes, winner, runnerAcc, pursuerAcc, runnerJitter, pursuerJitter, nearMissTime);
+            "{0},{1},{2:F3},{3:F3},{4:F3},{5:F3},{6:F3}, {7:F2}\n",
+            _totalEpisodes, winner, runnerAcc, pursuerAcc, drawsPercentage, runnerJitter, pursuerJitter, nearMissTime);
 
         File.AppendAllText(_csvFilePath, dataLine);
 
@@ -83,15 +96,18 @@ public class StatsManager : MonoBehaviour
         {
             float chunkRunnerAcc = (_chunkRunnerWins / (float)aggregationInterval);
             float chunkPursuerAcc = (_chunkPursuerWins / (float)aggregationInterval);
+            float chunkDrawsPercentage = (_chunkDraws / (float)aggregationInterval);
 
             string aggLine = $"{_totalEpisodes}," +
                              $"{chunkRunnerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
-                             $"{chunkPursuerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
+                             $"{chunkPursuerAcc.ToString(System.Globalization.CultureInfo.InvariantCulture)}," +
+                             $"{chunkDrawsPercentage.ToString(System.Globalization.CultureInfo.InvariantCulture)}\n";
 
             File.AppendAllText(_aggregatedCsvFilePath, aggLine);
 
             _chunkRunnerWins = 0;
             _chunkPursuerWins = 0;
+            _chunkDraws = 0;
         }
     }
     private void Awake()
@@ -110,11 +126,6 @@ public class StatsManager : MonoBehaviour
     private void Start()
     {
         _isInferenceMode = !Academy.Instance.IsCommunicatorOn;
-
-        if (_isInferenceMode)
-        {
-            Debug.Log("Inference");
-        }
     }
 
     private void StopTest()
@@ -153,8 +164,8 @@ public class StatsManager : MonoBehaviour
         _csvFilePath = Path.Combine(runDirectoryPath, finalFileName);
         _aggregatedCsvFilePath = Path.Combine(runDirectoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
 
-        File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,RunnerJitter,PursuerJitter,NearMissTime\n");
-        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunnerAcc,PursuerAcc\n");
+        File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime\n");
+        File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunnerAcc,PursuerAcc,DrawsPercentage\n");
     }
 
     private void UpdateTextDisplay(string winnerName, float runnerJitter, float pursuerJitter, float nearMissTime)
@@ -163,6 +174,7 @@ public class StatsManager : MonoBehaviour
 
         float runnerAcc = _totalEpisodes > 0 ? ((float)_runnerWins / _totalEpisodes) * 100f : 0f;
         float pursuerAcc = _totalEpisodes > 0 ? ((float)_pursuerWins / _totalEpisodes) * 100f : 0f;
+        float drawsPerc = _totalEpisodes > 0 ? ((float)_drawCount / _totalEpisodes) * 100f : 0f;
 
         statsText.text = $"LAST EPISODE STATS\n" +
                          $"Winner: <b>{winnerName}</b>\n" +
@@ -171,7 +183,8 @@ public class StatsManager : MonoBehaviour
                          $"Near Miss Time: {nearMissTime:F1}s" +
                          "\n" +
                          $"Runner Acc: {runnerAcc:F1}% ({ _runnerWins}/{ _totalEpisodes})\n" +
-                         $"Pursuer Acc: {pursuerAcc:F1}% ({ _pursuerWins}/{ _totalEpisodes})";
+                         $"Pursuer Acc: {pursuerAcc:F1}% ({ _pursuerWins}/{ _totalEpisodes})\n" +
+                         $"Draw %: {drawsPerc:F1}% ({_drawCount}/{_totalEpisodes})";
 
 
     }
@@ -182,14 +195,17 @@ public class StatsManager : MonoBehaviour
         {
             float runnerAvg = _runnerWinHistory.Count > 0 ? (float)_runnerWinHistory.Count(w => w) / _runnerWinHistory.Count * 100f : 0f;
             float pursuerAvg = _pursuerWinHistory.Count > 0 ? (float)_pursuerWinHistory.Count(w => w) / _pursuerWinHistory.Count * 100f : 0f;
+            float drawAvg = _drawsHistory.Count > 0 ? (float)_drawsHistory.Count(w => w) / _drawsHistory.Count * 100f : 0f;
 
             string summary = $"--- FINAL SUMMARY ---\n" +
                              $"Total Episodes Played: {_totalEpisodes}\n" +
                              $"Overall Runner Wins: {_runnerWins}\n" +
-                             $"Overall Pursuer Wins: {_pursuerWins}\n\n" +
+                             $"Overall Pursuer Wins: {_pursuerWins}\n" +
+                             $"Overall Draws: { _drawCount}\n\n" +
                              $"--- RECENT PERFORMANCE (Last {lastEpisodesCount} episodes) ---\n" +
                              $"Runner Recent Accuracy: {runnerAvg:F2}%\n" +
-                             $"Pursuer Recent Accuracy: {pursuerAvg:F2}%\n";
+                             $"Pursuer Recent Accuracy: {pursuerAvg:F2}%\n" +
+                             $"Draws Percentage: {drawAvg:F2}%";
 
             File.WriteAllText(_summaryFilePath, summary);
         }

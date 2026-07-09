@@ -1,0 +1,69 @@
+{
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 49941,
+                "file_path": "Assets\\Models\\draw-test\\Pursue\\Pursue-49941.onnx",
+                "reward": -0.557663907082035,
+                "creation_time": 1783583426.444682,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\draw-test\\Pursue\\Pursue-49941.pt"
+                ]
+            },
+            {
+                "steps": 60194,
+                "file_path": "Assets\\Models\\draw-test\\Pursue\\Pursue-60194.onnx",
+                "reward": -0.06492252824828029,
+                "creation_time": 1783583504.8582778,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\draw-test\\Pursue\\Pursue-60194.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 60194,
+            "file_path": "Assets\\Models\\draw-test\\Pursue.onnx",
+            "reward": -0.06492252824828029,
+            "creation_time": 1783583504.8582778,
+            "auxillary_file_paths": [
+                "Assets\\Models\\draw-test\\Pursue\\Pursue-60194.pt"
+            ]
+        }
+    },
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 49941,
+                "file_path": "Assets\\Models\\draw-test\\Run\\Run-49941.onnx",
+                "reward": 0.5734538764048082,
+                "creation_time": 1783583426.5638971,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\draw-test\\Run\\Run-49941.pt"
+                ]
+            },
+            {
+                "steps": 60194,
+                "file_path": "Assets\\Models\\draw-test\\Run\\Run-60194.onnx",
+                "reward": 0.36898762147175146,
+                "creation_time": 1783583504.9932406,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\draw-test\\Run\\Run-60194.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 60194,
+            "file_path": "Assets\\Models\\draw-test\\Run.onnx",
+            "reward": 0.36898762147175146,
+            "creation_time": 1783583504.9932406,
+            "auxillary_file_paths": [
+                "Assets\\Models\\draw-test\\Run\\Run-60194.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
