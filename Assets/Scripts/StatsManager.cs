@@ -14,6 +14,9 @@ public class StatsManager : MonoBehaviour
     [SerializeField] private string csvFileName = "results.csv";
     private string _csvFilePath;
 
+    [Range(1f, 100f)]
+    [SerializeField] private float timeScaleMultiplier = 1f;
+
     [SerializeField] private int lastEpisodesCount = 100;
     private string _summaryFilePath;
 
@@ -126,7 +129,7 @@ public class StatsManager : MonoBehaviour
 
         UpdateTextDisplay(winner, runnerJitter, pursuerJitter, nearMissTime);
 
-        if(_isInferenceMode && _totalEpisodes >= testEpisodesLimit) StopTest();
+        // if(_isInferenceMode && _totalEpisodes >= testEpisodesLimit) StopTest();
     }
 
     private void SaveAccuracyInInterval()
@@ -179,6 +182,16 @@ public class StatsManager : MonoBehaviour
     private void Start()
     {
         _isInferenceMode = !Academy.Instance.IsCommunicatorOn;
+    }
+
+    private void Update()
+    {
+        if (!_isInferenceMode) return;
+
+        if (Mathf.Abs(Time.timeScale - timeScaleMultiplier) > 0.01f)
+        {
+            Time.timeScale = timeScaleMultiplier;
+        }
     }
 
     private void StopTest()

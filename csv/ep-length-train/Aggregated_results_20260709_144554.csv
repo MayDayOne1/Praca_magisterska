@@ -1,3 +1,0 @@
-Episode,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime,EpisodeStepsAvg
-100,0.07,0.04,0.89,0.1480653,0.1453356,1.936413,930.25
-200,0.09,0.13,0.78,0.13945,0.1420488,1.897014,843.52

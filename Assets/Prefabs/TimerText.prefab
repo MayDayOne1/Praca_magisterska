@@ -150,3 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4301c1895cd5a40418bb4bdb06642a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
+  useTimeLimit: 0
+  limitHours: 0
+  limitMinutes: 0
+  limitSeconds: 0
