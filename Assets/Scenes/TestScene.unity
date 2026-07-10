@@ -1777,7 +1777,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7266426317568817759, guid: f16d51d599aadc240b5f9267cbf38bf7, type: 3}
       propertyPath: stepLimit
-      value: 1000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: -7266426317568817759, guid: f16d51d599aadc240b5f9267cbf38bf7, type: 3}
       propertyPath: enforceStepLimit
@@ -3276,14 +3276,6 @@ PrefabInstance:
     - target: {fileID: 1038232353215799553, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
       propertyPath: m_Name
       value: TimerText
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781500090465504164, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
-      propertyPath: limitMinutes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3781500090465504164, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
-      propertyPath: useTimeLimit
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4505577373573746882, guid: dd5cd6b3ec256164993ecd38c53b094e, type: 3}
       propertyPath: m_Pivot.x
@@ -5025,6 +5017,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 807106541}
     m_Modifications:
+    - target: {fileID: 291530479184393450, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
+      propertyPath: timeScaleMultiplier
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 3626891076893374663, guid: 24779e5ad286a14448a5c572ab6a7132, type: 3}
       propertyPath: m_Pivot.x
       value: 0

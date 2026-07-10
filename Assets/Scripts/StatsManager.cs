@@ -53,6 +53,8 @@ public class StatsManager : MonoBehaviour
     private Queue<float> _nearMissHistory = new Queue<float>();
     private Queue<int> _episodeStepsHistory = new Queue<int>();
 
+    private float _realElapsedTime = 0f;
+
     public void SaveEpisodeStats(string winner, float runnerJitter, float pursuerJitter, float nearMissTime, int episodeSteps)
     {
         _totalEpisodes++;
@@ -186,6 +188,8 @@ public class StatsManager : MonoBehaviour
 
     private void Update()
     {
+        _realElapsedTime += Time.unscaledDeltaTime;
+
         if (!_isInferenceMode) return;
 
         if (Mathf.Abs(Time.timeScale - timeScaleMultiplier) > 0.01f)
@@ -273,8 +277,14 @@ public class StatsManager : MonoBehaviour
             float recentNearMissAvg = _nearMissHistory.Count > 0 ? _nearMissHistory.Average() : 0f;
             float recentEpisodeStepsAvg = _episodeStepsHistory.Count > 0 ? (float)_episodeStepsHistory.Average() : 0f;
 
+            int hours = Mathf.FloorToInt(_realElapsedTime / 3600);
+            int minutes = Mathf.FloorToInt((_realElapsedTime % 3600) / 60);
+            int seconds = Mathf.FloorToInt(_realElapsedTime % 60);
+            string formattedTime = $"{hours:00}:{minutes:00}:{seconds:00}";
+
             string summary = $"--- FINAL SUMMARY ---\n" +
                              $"Total Episodes Played: {_totalEpisodes}\n" +
+                             $"Total Elapsed Time: {formattedTime}\n" +
                              $"Overall Runner Wins: {_runnerWins}\n" +
                              $"Overall Pursuer Wins: {_pursuerWins}\n" +
                              $"Overall Draws: {_drawCount}\n" +
