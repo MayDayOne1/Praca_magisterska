@@ -4,7 +4,7 @@ using UnityEditor;
 [InitializeOnLoad]
 public class AutoTesterMenu : EditorWindow
 {
-    private int totalRuns = 5;
+    private int totalRuns = 10;
 
     private const string PrefIsRunning = "AutoTest_IsRunning";
     private const string PrefTotalRuns = "AutoTest_TotalRuns";

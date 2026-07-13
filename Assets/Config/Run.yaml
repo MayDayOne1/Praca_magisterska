@@ -25,7 +25,7 @@ behaviors:
         sequence_length: 64
         memory_size: 256
 
-    max_steps: 5.0e6
+    max_steps: 5.0e8
     time_horizon: 64
     summary_freq: 10000
     keep_checkpoints: 5
@@ -59,7 +59,7 @@ behaviors:
         sequence_length: 64
         memory_size: 256
 
-    max_steps: 5.0e5
+    max_steps: 5.0e8
     time_horizon: 64
     summary_freq: 10000
     keep_checkpoints: 5

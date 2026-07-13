@@ -1,117 +1,117 @@
 {
-    "Pursue": {
-        "checkpoints": [
-            {
-                "steps": 4799986,
-                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4799986.onnx",
-                "reward": -0.009156337306763886,
-                "creation_time": 1783762805.8267202,
-                "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4799986.pt"
-                ]
-            },
-            {
-                "steps": 4849975,
-                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4849975.onnx",
-                "reward": -0.009881004867531995,
-                "creation_time": 1783762893.9205866,
-                "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4849975.pt"
-                ]
-            },
-            {
-                "steps": 4899995,
-                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4899995.onnx",
-                "reward": -0.01091796035853646,
-                "creation_time": 1783762981.8945749,
-                "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4899995.pt"
-                ]
-            },
-            {
-                "steps": 4949990,
-                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4949990.onnx",
-                "reward": -0.011958605918735057,
-                "creation_time": 1783763070.14329,
-                "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4949990.pt"
-                ]
-            },
-            {
-                "steps": 4999696,
-                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4999696.onnx",
-                "reward": -0.012586346925585658,
-                "creation_time": 1783763220.0805418,
-                "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4999696.pt"
-                ]
-            }
-        ],
-        "final_checkpoint": {
-            "steps": 4999696,
-            "file_path": "Assets\\Models\\train-5e6\\Pursue.onnx",
-            "reward": -0.012586346925585658,
-            "creation_time": 1783763220.0805418,
-            "auxillary_file_paths": [
-                "Assets\\Models\\train-5e6\\Pursue\\Pursue-4999696.pt"
-            ]
-        }
-    },
     "Run": {
         "checkpoints": [
             {
-                "steps": 4799986,
-                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4799986.onnx",
-                "reward": 0.8432321754105464,
-                "creation_time": 1783762805.9500084,
+                "steps": 4799967,
+                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4799967.onnx",
+                "reward": 0.384289222899598,
+                "creation_time": 1783946265.2966793,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Run\\Run-4799986.pt"
+                    "Assets\\Models\\train-5e6\\Run\\Run-4799967.pt"
                 ]
             },
             {
-                "steps": 4849975,
-                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4849975.onnx",
-                "reward": 0.8777908168330386,
-                "creation_time": 1783762894.0368104,
+                "steps": 4849977,
+                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4849977.onnx",
+                "reward": 0.5861425683611915,
+                "creation_time": 1783946361.6355462,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Run\\Run-4849975.pt"
+                    "Assets\\Models\\train-5e6\\Run\\Run-4849977.pt"
                 ]
             },
             {
-                "steps": 4899995,
-                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4899995.onnx",
-                "reward": 0.8995341225591016,
-                "creation_time": 1783762982.0245476,
+                "steps": 4899951,
+                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4899951.onnx",
+                "reward": 0.4652967664310936,
+                "creation_time": 1783946458.9152174,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Run\\Run-4899995.pt"
+                    "Assets\\Models\\train-5e6\\Run\\Run-4899951.pt"
                 ]
             },
             {
-                "steps": 4949990,
-                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4949990.onnx",
-                "reward": 0.9439562546334915,
-                "creation_time": 1783763070.2597034,
+                "steps": 4949974,
+                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4949974.onnx",
+                "reward": 0.4069405913146006,
+                "creation_time": 1783946555.2357347,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Run\\Run-4949990.pt"
+                    "Assets\\Models\\train-5e6\\Run\\Run-4949974.pt"
                 ]
             },
             {
-                "steps": 4999696,
-                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4999696.onnx",
-                "reward": 0.908499624994066,
-                "creation_time": 1783763220.2021399,
+                "steps": 4999575,
+                "file_path": "Assets\\Models\\train-5e6\\Run\\Run-4999575.onnx",
+                "reward": 0.16506778396840674,
+                "creation_time": 1783946713.256558,
                 "auxillary_file_paths": [
-                    "Assets\\Models\\train-5e6\\Run\\Run-4999696.pt"
+                    "Assets\\Models\\train-5e6\\Run\\Run-4999575.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 4999696,
+            "steps": 4999575,
             "file_path": "Assets\\Models\\train-5e6\\Run.onnx",
-            "reward": 0.908499624994066,
-            "creation_time": 1783763220.2021399,
+            "reward": 0.16506778396840674,
+            "creation_time": 1783946713.256558,
             "auxillary_file_paths": [
-                "Assets\\Models\\train-5e6\\Run\\Run-4999696.pt"
+                "Assets\\Models\\train-5e6\\Run\\Run-4999575.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 4799967,
+                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4799967.onnx",
+                "reward": 0.26282254953144324,
+                "creation_time": 1783946265.406229,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4799967.pt"
+                ]
+            },
+            {
+                "steps": 4849977,
+                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4849977.onnx",
+                "reward": 0.4570706280924025,
+                "creation_time": 1783946361.747025,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4849977.pt"
+                ]
+            },
+            {
+                "steps": 4899951,
+                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4899951.onnx",
+                "reward": 0.3224902139386026,
+                "creation_time": 1783946459.0471973,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4899951.pt"
+                ]
+            },
+            {
+                "steps": 4949974,
+                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4949974.onnx",
+                "reward": 0.45533282323567953,
+                "creation_time": 1783946555.3360326,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4949974.pt"
+                ]
+            },
+            {
+                "steps": 4999575,
+                "file_path": "Assets\\Models\\train-5e6\\Pursue\\Pursue-4999575.onnx",
+                "reward": 0.5269731061998755,
+                "creation_time": 1783946713.3445263,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-5e6\\Pursue\\Pursue-4999575.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4999575,
+            "file_path": "Assets\\Models\\train-5e6\\Pursue.onnx",
+            "reward": 0.5269731061998755,
+            "creation_time": 1783946713.3445263,
+            "auxillary_file_paths": [
+                "Assets\\Models\\train-5e6\\Pursue\\Pursue-4999575.pt"
             ]
         }
     },

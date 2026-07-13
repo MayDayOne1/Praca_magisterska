@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
     private void UpdateTimerDisplay()
     {
         int hours = Mathf.FloorToInt(elapsedTime / 3600);
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int minutes = Mathf.FloorToInt((elapsedTime % 3600) / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
 
         if (timerText != null)
