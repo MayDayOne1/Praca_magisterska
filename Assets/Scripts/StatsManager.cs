@@ -19,6 +19,7 @@ public class StatsManager : MonoBehaviour
 
     [SerializeField] private int lastEpisodesCount = 100;
     private string _summaryFilePath;
+    private string _summaryCsvFilePath;
 
     [SerializeField] private int aggregationInterval = 100;
     private string _aggregatedCsvFilePath;
@@ -233,6 +234,12 @@ public class StatsManager : MonoBehaviour
         _summaryFilePath = Path.Combine(runDirectoryPath, $"Summary_{fileNameWithoutExt}_{timestamp}.txt");
         _csvFilePath = Path.Combine(runDirectoryPath, finalFileName);
         _aggregatedCsvFilePath = Path.Combine(runDirectoryPath, $"Aggregated_{fileNameWithoutExt}_{timestamp}.csv");
+        _summaryCsvFilePath = Path.Combine(runDirectoryPath, "Experiment_Summary.csv");
+
+        if (!File.Exists(_summaryCsvFilePath))
+        {
+            File.WriteAllText(_summaryCsvFilePath, "Timestamp,TotalEpisodes,RunnerWinRate,PursuerWinRate,DrawRate,OverallRunnerJitter,OverallPursuerJitter,OverallNearMiss,OverallEpisodeSteps\n");
+        }
 
         File.WriteAllText(_csvFilePath, "Episode,Winner,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime,EpisodeSteps\n");
         File.WriteAllText(_aggregatedCsvFilePath, "Episode,RunnerAcc,PursuerAcc,DrawsPercentage,RunnerJitter,PursuerJitter,NearMissTime,EpisodeStepsAvg\n");
@@ -302,6 +309,19 @@ public class StatsManager : MonoBehaviour
                              $"Recent Episode Length Avg: {recentEpisodeStepsAvg:F0} steps\n";
 
             File.WriteAllText(_summaryFilePath, summary);
+
+            float overallRunnerWinRate = _totalEpisodes > 0 ? ((float)_runnerWins / _totalEpisodes) * 100f : 0f;
+            float overallPursuerWinRate = _totalEpisodes > 0 ? ((float)_pursuerWins / _totalEpisodes) * 100f : 0f;
+            float overallDrawRate = _totalEpisodes > 0 ? ((float)_drawCount / _totalEpisodes) * 100f : 0f;
+
+            string timestamp = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+            string summaryCsvLine = string.Format(System.Globalization.CultureInfo.InvariantCulture,
+                "{0},{1},{2:F2},{3:F2},{4:F2},{5:F4},{6:F4},{7:F4},{8:F2}\n",
+                timestamp, _totalEpisodes, overallRunnerWinRate, overallPursuerWinRate, overallDrawRate,
+                overallRunnerJitterAvg, overallPursuerJitterAvg, overallNearMissAvg, overallEpisodeStepsAvg);
+
+            File.AppendAllText(_summaryCsvFilePath, summaryCsvLine);
         }
     }
 }
