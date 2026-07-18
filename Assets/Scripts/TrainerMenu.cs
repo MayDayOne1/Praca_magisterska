@@ -6,6 +6,7 @@ public class TrainerMenu : EditorWindow
 {
     private string runId = "my-test";
     private bool useForce = true;
+    private bool forceCpu = true;
 
     [MenuItem("ML-Agents/Training Menu")]
     public static void ShowWindow()
@@ -32,6 +33,7 @@ public class TrainerMenu : EditorWindow
         }
 
         useForce = EditorGUILayout.Toggle("Use --force:", useForce);
+        forceCpu = EditorGUILayout.Toggle("Force CPU (--torch-device):", forceCpu);
 
         GUILayout.Space(10);
 
@@ -39,14 +41,18 @@ public class TrainerMenu : EditorWindow
         {
             PlayerPrefs.SetString("CurrentRunId", runId);
             PlayerPrefs.Save();
-            LaunchCmd(runId, useForce);
+            LaunchCmd(runId, useForce, forceCpu);
         }
     }
 
-    private void LaunchCmd(string id, bool force)
+    private void LaunchCmd(string id, bool force, bool cpu)
     {
         string forceFlag = force ? " --force" : "";
-        string command = $"/k \"venv\\Scripts\\activate.bat && mlagents-learn Assets\\Config\\Run.yaml --run-id={id} --results-dir=Assets\\Models{forceFlag}\"";
+        string cpuFlag = cpu ? " --torch-device cpu" : "";
+
+        string cudaOverride = cpu ? "set CUDA_VISIBLE_DEVICES=-1 && " : "";
+
+        string command = $"/k \"venv\\Scripts\\activate.bat &&{cudaOverride}mlagents-learn Assets\\Config\\Run.yaml --run-id={id} --results-dir=Assets\\Models{forceFlag}{cpuFlag}\"";
 
         ProcessStartInfo processInfo = new ProcessStartInfo();
         processInfo.FileName = "cmd.exe";

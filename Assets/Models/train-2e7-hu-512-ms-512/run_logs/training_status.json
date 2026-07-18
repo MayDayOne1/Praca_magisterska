@@ -1,0 +1,123 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 19799998,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19799998.onnx",
+                "reward": 0.21980596610483827,
+                "creation_time": 1784203662.0714927,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19799998.pt"
+                ]
+            },
+            {
+                "steps": 19849942,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19849942.onnx",
+                "reward": 0.26758144703277476,
+                "creation_time": 1784203773.9136558,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19849942.pt"
+                ]
+            },
+            {
+                "steps": 19899962,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19899962.onnx",
+                "reward": 0.3202301794320062,
+                "creation_time": 1784203881.0553486,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19899962.pt"
+                ]
+            },
+            {
+                "steps": 19949985,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19949985.onnx",
+                "reward": 0.2801179406651033,
+                "creation_time": 1784203980.7524765,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19949985.pt"
+                ]
+            },
+            {
+                "steps": 19999693,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19999693.onnx",
+                "reward": 0.12862843149067724,
+                "creation_time": 1784204149.5959744,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19999693.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19999693,
+            "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Run.onnx",
+            "reward": 0.12862843149067724,
+            "creation_time": 1784204149.5959744,
+            "auxillary_file_paths": [
+                "Assets\\Models\\train-2e7-hu-512-ms-512\\Run\\Run-19999693.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 19799998,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19799998.onnx",
+                "reward": 0.4003615795487636,
+                "creation_time": 1784203662.3624046,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19799998.pt"
+                ]
+            },
+            {
+                "steps": 19849942,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19849942.onnx",
+                "reward": 0.4057643131262301,
+                "creation_time": 1784203774.1241248,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19849942.pt"
+                ]
+            },
+            {
+                "steps": 19899962,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19899962.onnx",
+                "reward": 0.49153231643140316,
+                "creation_time": 1784203881.2270155,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19899962.pt"
+                ]
+            },
+            {
+                "steps": 19949985,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19949985.onnx",
+                "reward": 0.33239907493743187,
+                "creation_time": 1784203980.9361517,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19949985.pt"
+                ]
+            },
+            {
+                "steps": 19999693,
+                "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19999693.onnx",
+                "reward": 0.6027347271001953,
+                "creation_time": 1784204149.8735287,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19999693.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19999693,
+            "file_path": "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue.onnx",
+            "reward": 0.6027347271001953,
+            "creation_time": 1784204149.8735287,
+            "auxillary_file_paths": [
+                "Assets\\Models\\train-2e7-hu-512-ms-512\\Pursue\\Pursue-19999693.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}
