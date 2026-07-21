@@ -1,0 +1,19 @@
+--- FINAL SUMMARY ---
+Total Episodes Played: 902
+Total Elapsed Time: 00:02:56
+Overall Runner Wins: 336
+Overall Pursuer Wins: 323
+Overall Draws: 243
+Overall Runner Jitter Avg: 0.08
+Overall Pursuer Jitter Avg: 0.07
+Overall Near Miss Time Avg: 1.25s
+Overall Episode Length Avg: 553 steps
+
+--- RECENT PERFORMANCE (Last 100 episodes) ---
+Runner Recent Accuracy: 40.00%
+Pursuer Recent Accuracy: 36.00%
+Draws Percentage: 24.00%
+Recent Runner Jitter Avg: 0.07
+Recent Pursuer Jitter Avg: 0.06
+Recent Near Miss Time Avg: 1.04s
+Recent Episode Length Avg: 522 steps

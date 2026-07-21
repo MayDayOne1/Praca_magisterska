@@ -53,6 +53,8 @@ public class TrainerMenu : EditorWindow
         string cudaOverride = cpu ? "set CUDA_VISIBLE_DEVICES=-1 && " : "";
 
         string command = $"/k \"venv\\Scripts\\activate.bat &&{cudaOverride}mlagents-learn Assets\\Config\\Run.yaml --run-id={id} --results-dir=Assets\\Models{forceFlag}{cpuFlag}\"";
+        //string command = $"/k \"venv\\Scripts\\activate.bat &&{cudaOverride}mlagents-learn --run-id={id} --results-dir=Assets\\Models{forceFlag}{cpuFlag}\"";
+
 
         ProcessStartInfo processInfo = new ProcessStartInfo();
         processInfo.FileName = "cmd.exe";

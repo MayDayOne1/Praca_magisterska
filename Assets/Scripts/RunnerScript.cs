@@ -108,6 +108,9 @@ public class RunnerScript : Agent
 
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
             EndEpisode();
+
+            // PUNISH DRAW
+            // AddReward(-1.0f);
         }
     }
 
@@ -166,7 +169,7 @@ public class RunnerScript : Agent
         if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
-            SetReward(-1f);
+            AddReward(-1f);
             EndEpisode();
         }
     }

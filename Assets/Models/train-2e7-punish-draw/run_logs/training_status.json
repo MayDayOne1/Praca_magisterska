@@ -1,0 +1,123 @@
+{
+    "Run": {
+        "checkpoints": [
+            {
+                "steps": 19799858,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19799858.onnx",
+                "reward": 0.3174787404234795,
+                "creation_time": 1784611556.1684315,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19799858.pt"
+                ]
+            },
+            {
+                "steps": 19849974,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19849974.onnx",
+                "reward": 0.21070687531256208,
+                "creation_time": 1784611627.3973281,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19849974.pt"
+                ]
+            },
+            {
+                "steps": 19899982,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19899982.onnx",
+                "reward": 0.2477573072132857,
+                "creation_time": 1784611700.5094302,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19899982.pt"
+                ]
+            },
+            {
+                "steps": 19949995,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19949995.onnx",
+                "reward": 0.42954535596072674,
+                "creation_time": 1784611770.371878,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19949995.pt"
+                ]
+            },
+            {
+                "steps": 19999696,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19999696.onnx",
+                "reward": null,
+                "creation_time": 1784611902.5947206,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19999696.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19999696,
+            "file_path": "Assets\\Models\\train-2e7-punish-draw\\Run.onnx",
+            "reward": null,
+            "creation_time": 1784611902.5947206,
+            "auxillary_file_paths": [
+                "Assets\\Models\\train-2e7-punish-draw\\Run\\Run-19999696.pt"
+            ]
+        }
+    },
+    "Pursue": {
+        "checkpoints": [
+            {
+                "steps": 19799858,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19799858.onnx",
+                "reward": 0.18458298174664378,
+                "creation_time": 1784611556.100261,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19799858.pt"
+                ]
+            },
+            {
+                "steps": 19849974,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19849974.onnx",
+                "reward": 0.5750980616554501,
+                "creation_time": 1784611627.4633098,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19849974.pt"
+                ]
+            },
+            {
+                "steps": 19899982,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19899982.onnx",
+                "reward": 0.333521721726757,
+                "creation_time": 1784611700.4445474,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19899982.pt"
+                ]
+            },
+            {
+                "steps": 19949995,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19949995.onnx",
+                "reward": 0.2878052089551483,
+                "creation_time": 1784611770.4385982,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19949995.pt"
+                ]
+            },
+            {
+                "steps": 19999696,
+                "file_path": "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19999696.onnx",
+                "reward": 0.5152425116453415,
+                "creation_time": 1784611902.6711195,
+                "auxillary_file_paths": [
+                    "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19999696.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19999696,
+            "file_path": "Assets\\Models\\train-2e7-punish-draw\\Pursue.onnx",
+            "reward": 0.5152425116453415,
+            "creation_time": 1784611902.6711195,
+            "auxillary_file_paths": [
+                "Assets\\Models\\train-2e7-punish-draw\\Pursue\\Pursue-19999696.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}

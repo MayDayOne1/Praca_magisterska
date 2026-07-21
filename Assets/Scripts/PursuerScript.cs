@@ -113,14 +113,14 @@ public class PursuerScript : Agent
         if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
-            SetReward(-1f);
+            AddReward(-1f);
             EndEpisode();
         }
 
         if (collision.gameObject.CompareTag("Runner"))
         {
             enviroManager.SetFloorMaterial(enviroManager.pursuerWin);
-            SetReward(1f);
+            AddReward(1f);
             CollectAndSaveDataToCSV(winner: "Pursuer");
 
             if (runner != null) runner.GotCaught();

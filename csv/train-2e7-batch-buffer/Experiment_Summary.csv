@@ -1,0 +1,2 @@
+Timestamp,TotalEpisodes,RunnerWinRate,PursuerWinRate,DrawRate,OverallRunnerJitter,OverallPursuerJitter,OverallNearMiss,OverallEpisodeSteps
+2026-07-19 22:14:46,757304,44.75,53.40,1.85,0.0814,0.0840,0.5693,132.05
