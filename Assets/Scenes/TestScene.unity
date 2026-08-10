@@ -8376,7 +8376,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 3a5aa01b8e7d3e945a94f534a39bb2fa, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: e03a485fd77a97c458f7d0cb41693aaf, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Run
@@ -8990,7 +8990,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: f8b8c0a54e60a034abb3c78de04b47b1, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 8644cde957bf25a4e9df60f321b6975f, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Pursue
