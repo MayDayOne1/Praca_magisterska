@@ -33,7 +33,7 @@ public class TrainerMenu : EditorWindow
         }
 
         useForce = EditorGUILayout.Toggle("Use --force:", useForce);
-        forceCpu = EditorGUILayout.Toggle("Force CPU (--torch-device):", forceCpu);
+        forceCpu = EditorGUILayout.Toggle("Force CPU:", forceCpu);
 
         GUILayout.Space(10);
 

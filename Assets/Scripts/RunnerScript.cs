@@ -9,11 +9,11 @@ public class RunnerScript : Agent
 {
     [SerializeField] private PursuerScript pursuer;
     [SerializeField] private bool denseRewards = true;
-    [SerializeField] private bool wallHitEndsEpisode = false;
+    [SerializeField] private bool wallHitPenalty = false;
     [SerializeField] private EnviroManager enviroManager;
     [SerializeField] private Transform targetTransform;
     [SerializeField] private Transform pursuerTransform;
-    [SerializeField] private float speed = 70f;
+    [SerializeField] private float speed = 3f;
 
     private float previousDistanceToGoal;
     private float moveSpeed = 3f;
@@ -138,8 +138,8 @@ public class RunnerScript : Agent
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
-        continuousActions[1] = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
+        continuousActions[0] = Input.GetAxisRaw("Horizontal");
+        continuousActions[1] = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()
@@ -166,7 +166,7 @@ public class RunnerScript : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (wallHitEndsEpisode && collision.gameObject.CompareTag("Wall"))
+        if (wallHitPenalty && collision.gameObject.CompareTag("Wall"))
         {
             enviroManager.SetFloorMaterial(enviroManager.wallHit);
             AddReward(-1f);

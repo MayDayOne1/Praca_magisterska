@@ -1235,7 +1235,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: d032dd32f7850554a9ce7877653a5c10, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: Run
   TeamId: 0
   m_UseChildSensors: 1
@@ -1275,11 +1275,11 @@ MonoBehaviour:
   MaxStep: 1000
   pursuer: {fileID: 6793453644847208559}
   denseRewards: 1
-  wallHitEndsEpisode: 0
+  wallHitPenalty: 0
   enviroManager: {fileID: 513562079943153991}
   targetTransform: {fileID: 3574733593302599457}
   pursuerTransform: {fileID: 4336150147850347097}
-  speed: 70
+  speed: 3
   dangerZoneRadius: 5
 --- !u!114 &3697616206976371462
 MonoBehaviour:
@@ -4325,7 +4325,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 47c30c0433b3b7149b9aeb873c05e8f7, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 8644cde957bf25a4e9df60f321b6975f, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: Pursue
@@ -4367,7 +4367,7 @@ MonoBehaviour:
   MaxStep: 1000
   runner: {fileID: 5320367183719985938}
   denseRewards: 1
-  wallHitEndsEpisode: 0
+  wallHitPenalty: 0
   enviroManager: {fileID: 513562079943153991}
   runnerTransform: {fileID: 5241312167950050066}
   speed: 70
